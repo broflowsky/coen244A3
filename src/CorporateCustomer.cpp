@@ -6,15 +6,39 @@
  */
 
 #include "CorporateCustomer.h"
-
+int CorporateCustomer::maxRentalPeriod = 35;
 CorporateCustomer::CorporateCustomer(int id,string name,string address,string tel,
 									string companyName,string companyAddress):
 									Customer(id,name,address,tel)
 {
-
+	this->companyName=companyName;
+	this->companyAddress=companyAddress;
 }
-
 CorporateCustomer::~CorporateCustomer() {
-	// TODO Auto-generated destructor stub
-}
 
+}
+void CorporateCustomer::print(ostream& out)const{
+	Customer::print(out);
+	out <<"\nCompany name: "<<companyName
+		<<"\nCompany address: "<<companyAddress;
+}
+//////////////////////////////////////////
+////////////     SET     /////////////////
+void CorporateCustomer::setCompanyAddress(string address){
+	this->address=address;
+}
+void CorporateCustomer::setCompanyName(string name){
+	this->name=name;
+}
+//////////////////////////////////////////
+////////////     GET     /////////////////
+string CorporateCustomer::getCompanyName()const{
+	return name;
+}
+string CorporateCustomer::getCompanyAddress()const{
+	return address;
+}
+//////////////////////////////////////////
+int CorporateCustomer::getMaxRental()const{
+	 return maxRentalPeriod;
+ }
