@@ -6,6 +6,8 @@
  */
 
 #include "Car.h"
+#include <iostream>
+using namespace std;
 ostream& operator<<(ostream& out, const Car& c){
 
 	 out <<"###################################"
@@ -15,11 +17,27 @@ ostream& operator<<(ostream& out, const Car& c){
 		 <<"\nThis car is "<<(c.isAvailable?"available.":"not available.");
 	return out;
 }
+bool Car::operator==(const Car& c)const{
+	if(&c != this){//check self assignment
+		if(id != c.id)
+			return false;
+		if(isAvailable != c.isAvailable)
+			return false;
+		if(type != c.type)
+			return false;
+	}
+	return true;
+}
 Car::Car(string type, int id){
 	this->type=type;
 	this->id=id;
 	isAvailable = true;
 
+}
+Car::Car(const Car& c){
+	type = c.type;
+	id = c.id;
+	isAvailable = c.isAvailable;
 }
 Car::~Car() {
 	// TODO Auto-generated destructor stub

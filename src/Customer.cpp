@@ -21,6 +21,12 @@ Customer::Customer(int id,string name,string address,string tel) {
 	this->tel = tel;
 
 }
+Customer::Customer(const Customer &c){
+	customerId = c.customerId;
+	name =c.name;
+	address = c.address;
+	tel = c.tel;
+}
 Customer::~Customer() {
 
 }

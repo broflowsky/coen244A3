@@ -14,7 +14,9 @@ int VipCustomer::maxRentalPeriod=45;
 VipCustomer::VipCustomer(int id,string name,string address,string tel)
 						:Customer(id,name,address,tel){
 }
-
+VipCustomer::VipCustomer(const VipCustomer &c):Customer(c){
+	//nothing to do for now
+}
 VipCustomer::~VipCustomer() {
 }
 void VipCustomer::print(ostream& out)const{

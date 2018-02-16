@@ -16,6 +16,10 @@ CorporateCustomer::CorporateCustomer(int id,string name,string address,string te
 	this->companyName=companyName;
 	this->companyAddress=companyAddress;
 }
+CorporateCustomer::CorporateCustomer(const CorporateCustomer& c):Customer(c){
+	companyName = c.companyName;
+	companyAddress = c.companyAddress;
+}
 CorporateCustomer::~CorporateCustomer() {
 
 }

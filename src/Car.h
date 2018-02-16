@@ -10,7 +10,18 @@
  *
  *
  * Functions to implement
- ********** addCar() add car to inventory
+ ********** addCar() 		adds car to list<car>
+ ********** removeCar()
+ ********** addCustomer() 	to list<Customer>
+ ********** removeCustomer()
+ ********** rentCar() 		assigns car to customer
+ ********** returnCar() 	takse car back from customer
+ ********** getCustomerPrivilege()  returns maxRentalPeriod
+ ********** changePrivilege() just changes the maxRentalPeriod
+ ********** isRented() 	applies to a car
+ ********** isRenting()	applies to a customer
+ ********** getCustomerRank() 	returns either regular OR corporate OR VIP
+ ********** getTypeRentedCar() 	calls on a CORPORATE customer returns the types of car he rented
  *
  *
  * */
@@ -28,8 +39,9 @@ class Car {
 	friend ostream& operator<<(ostream&, const Car&);
 public:
 
-	Car(string = "regular", int = 0);
-	~Car();
+	Car(string = "regular", int = 0);	//default and parameter constructor
+	Car(const Car&);					//copy constructor
+	~Car();								//destructor
 
 	///////////////Setters Getters//////////////
 	void setID(int);
@@ -39,7 +51,10 @@ public:
 	int getID()const;
 	bool getAvailability()const;
 	string getType()const;
-	///////////////////////////////////////////
+
+	///////////		operator overloads    //////////////
+	bool operator==(const Car&) const;
+	bool operator!=(const Car& c)const{return !(Car::operator==(c));};
 
 };
 
