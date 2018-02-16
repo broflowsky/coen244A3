@@ -6,6 +6,8 @@
  */
 
 #include "CorporateCustomer.h"
+#include <iostream>
+using namespace std;
 int CorporateCustomer::maxRentalPeriod = 35;
 CorporateCustomer::CorporateCustomer(int id,string name,string address,string tel,
 									string companyName,string companyAddress):
@@ -21,6 +23,7 @@ void CorporateCustomer::print(ostream& out)const{
 	Customer::print(out);
 	out <<"\nCompany name: "<<companyName
 		<<"\nCompany address: "<<companyAddress;
+
 }
 //////////////////////////////////////////
 ////////////     SET     /////////////////

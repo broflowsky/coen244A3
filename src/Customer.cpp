@@ -6,6 +6,8 @@
  */
 
 #include "Customer.h"
+#include <iostream>
+using namespace std;
 int Customer::maxRentalPeriod = 20;
 
 ostream& operator<<(ostream& out, const Customer& c){
@@ -23,9 +25,10 @@ Customer::~Customer() {
 
 }
 void Customer::print(ostream& out)const{
+
 	out <<"\tCustomer Info"
-		<<"\name: "<<name
-		<<"\address: "<<address
+		<<"\nname: "<<name
+		<<"\naddress: "<<address
 		<<"\ntel: "<<tel;
 }
 //////////////////////////////////////////
