@@ -10,8 +10,7 @@
 using namespace std;
 ostream& operator<<(ostream& out, const Car& c){
 
-	 out <<"###################################"
-		 <<"\n\tCar Info"
+	 out <<"\n\tCar Info"
 		 <<"\nCar type: "<<c.type
 		 <<"\nID:"<<c.id
 		 <<"\nThis car is "<<(c.isAvailable?"available.":"not available.");
@@ -32,12 +31,14 @@ Car::Car(string type, int id){
 	this->type=type;
 	this->id=id;
 	isAvailable = true;
+	whoIsRenting = nullptr;
 
 }
 Car::Car(const Car& c){
 	type = c.type;
 	id = c.id;
 	isAvailable = c.isAvailable;
+	whoIsRenting = c.whoIsRenting;
 }
 Car::~Car() {
 	// TODO Auto-generated destructor stub

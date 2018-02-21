@@ -6,4 +6,15 @@
  */
 
 #include "Customer.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
+int main(){
+
+	Customer *test = new Customer();
+	cout<<*test;
+
+
+	return 0;
+}

@@ -27,8 +27,11 @@
  * */
 #ifndef CAR_H_
 #define CAR_H_
+
+class Customer; //forward declaration, get errors if i use //#include "Customer.h"
 #include<string>
 #include<iostream>
+
 using namespace std;
 
 
@@ -37,6 +40,7 @@ class Car {
 	int id;
 	bool isAvailable;
 	friend ostream& operator<<(ostream&, const Car&);
+	Customer* whoIsRenting;
 public:
 
 	Car(string = "regular", int = 0);	//default and parameter constructor

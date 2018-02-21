@@ -15,8 +15,7 @@ int main(){
 
 	Car*c1 = new Car();
 	Car*c2 = new Car("Luxe",1000);
-
-	*c1==*c1?cout<<'y':cout<<'n';
-	cout<<'\n'<<c2->getType();
+	Car*c3 = new Car(*c2);
+	cout <<*c1<<endl<<*c2<<endl<<*c3;
 	return 0;
 }

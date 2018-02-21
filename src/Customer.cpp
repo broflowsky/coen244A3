@@ -19,6 +19,7 @@ Customer::Customer(int id,string name,string address,string tel) {
 	this->name = name;
 	this->address = address;
 	this->tel = tel;
+	carRented = nullptr;
 
 }
 Customer::Customer(const Customer &c){
@@ -26,6 +27,7 @@ Customer::Customer(const Customer &c){
 	name =c.name;
 	address = c.address;
 	tel = c.tel;
+	carRented = c.carRented;
 }
 Customer::~Customer() {
 
@@ -35,7 +37,8 @@ void Customer::print(ostream& out)const{
 	out <<"\tCustomer Info"
 		<<"\nname: "<<name
 		<<"\naddress: "<<address
-		<<"\ntel: "<<tel;
+		<<"\ntel: "<<tel
+		<<"\nis renting a car: "<<(carRented == nullptr?"no":"yes");
 }
 //////////////////////////////////////////
 ////////////     SET     /////////////////
