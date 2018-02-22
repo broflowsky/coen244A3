@@ -110,24 +110,6 @@ Customer* CarRentalManagement::findCustomer(string name){
 		return nullptr;
 	}
 	else return *iterator;
-
-	//README
-	/*
-	 * Alright a bit of explaining
-	 * Note that i changed my list<Customer> to list<Customer*> because of static/dynamic binding
-	 *
-	 * problem was i couldnt get inherited classes to use their overriden functions
-	 * now problem is solved
-	 *
-	 * before that i had to write that god awefully amazing &*iterator but whatever
-	 *
-	 * i dont think you need to worryy about that since there isnt any inheritance with Car
-	 * */
-	//	else return &*iterator; //hahahahahahahahahahahahahahahahahahahahahahahahahhaaha
-	//converts iterator to pointer
-	// *iterator is a reference, so &*iterator gives the address of the reference
-	//which is essentially a pointer to that reference
-	//it s actually pretty straight forward
 }
 Customer* CarRentalManagement::findCustomer(int customerId){
 	list<Customer*>::iterator iterator;
@@ -170,12 +152,15 @@ void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)
 }
 bool CarRentalManagement::isRenting(const Customer &c)
 {
-
-	return (&c.getCar()==nullptr);//FIXME i have not tested this!!
+	return (&c.getCar()!=nullptr);
 }
 
-string CarRentalManagement::getCustomerRank(const Customer &c)
+string CarRentalManagement::getCustomerRank(Customer &c)
 {
-	return string();//TODO getCustRank function
+	if(dynamic_cast<CorporateCustomer*>(&c))//NOTE insight of how it works return pointer => 0 nullptr, else the address
+		return "Corporate";
+	else if(dynamic_cast<VipCustomer*>(&c))
+		return "Vip";
+	else return "regular";
 }
 

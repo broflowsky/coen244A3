@@ -24,13 +24,12 @@ public:
 #endif
 
 int main(){
-	//TODO we ll make the driver look nice when it s all done
 	KeepAlive k{}; // for VS users
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
 
 	cout<<"Car Rental Management System Driver"<<endl;
 	/////////////////////////////////////TESTING CAR //////////////////////////////
-	cout << "\n\t\tTESTING CAR CLASS";
+	cout << "\n\t\tTESTING CAR CLASS";//NOTE we have dedicated drivers for testing those functions
 	///////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////TESTING CUSTOMER /////////////////////////
 	cout << "\n\n\n\t\tTESTING CUSTOMER CLASS";
@@ -45,12 +44,12 @@ int main(){
 			<<*Coen244CarCompany->findCustomer(2)<<endl
 			<<*Coen244CarCompany->findCustomer("Barack")<<endl;
 
-	cout	<<"\nNow getting the maximum rental periods of all types of customers to 30,50,60.\n"
+	cout	<<"\nNow getting the maximum rental periods of all types of customers.\n"
 			<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
 			<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
 			<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
 
-	cout	<<"\n\nChanging the maximum rental period:\n";
+	cout	<<"\n\nChanging the maximum rental period to to 30,50,60:\n";
 			Coen244CarCompany->changePrivilege(30,*Coen244CarCompany->findCustomer("Valentin"));
 			Coen244CarCompany->changePrivilege(50,*Coen244CarCompany->findCustomer("Arseniy"));
 			Coen244CarCompany->changePrivilege(60,*Coen244CarCompany->findCustomer("Barack"));
@@ -59,7 +58,6 @@ int main(){
 				<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
 				<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
 				<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
-
 
 
 

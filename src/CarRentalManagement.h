@@ -36,6 +36,18 @@ public:
 	void returnCar(Customer*customer);
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
+	/*TODO
+	 * Car* findCar*()
+	 * rentCar() should: check that given customer CAN rent that car (availability, privileges)
+	 * 					 update the car availability,
+	 * 			 		 add that car to carRented in Customer,
+	 * 			 		 add that customer to Car
+	 *
+	 *returnCar() should : undo the above
+	 *
+	 *
+	 * */
+
 
 
 	//					Customer Functions
@@ -50,8 +62,9 @@ public:
 
 	int getCustomerPrivilege(Customer&)const;
 	void changePrivilege(int newMaxRentalDuration, Customer&);
+
 	bool isRenting(const Customer&);
-	string getCustomerRank(const Customer&);
+	string getCustomerRank(Customer&); // cant use const since dynamic_cast
 
 };
 
