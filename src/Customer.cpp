@@ -71,4 +71,8 @@ string Customer::getTel()const{
 int Customer::getMaxRental()const{
 	return maxRentalPeriod;
 }
+Car Customer::getCar() const
+{
+	return this->carRented;				//needs some fixing...
+}
 /////////////////////////////////////////

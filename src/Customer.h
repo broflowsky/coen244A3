@@ -40,6 +40,7 @@ public:
 	string getAddress()const;
 	string getTel()const;
 	virtual int getMaxRental()const;
+	Car getCar()const;
 
 };
 #endif /* CUSTOMER_H_ */

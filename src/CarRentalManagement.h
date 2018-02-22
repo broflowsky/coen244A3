@@ -20,6 +20,7 @@
 using namespace std;
 
 class CarRentalManagement {
+private:
 	list<VipCustomer> listCustomer;
 	list<Car> listCar;
 public:
@@ -29,7 +30,7 @@ public:
 	//					Car Functions
 	void addCar(string type, int id);
 	void removeCar(const Car&);
-	void rentCar();
+	void rentCar(Customer*customer, Car*car);
 	void returnCar();
 	void isRented(const Car&);
 	string getTypeRentedCar(const Car&);

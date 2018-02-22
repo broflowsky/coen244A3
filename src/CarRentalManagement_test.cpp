@@ -16,7 +16,7 @@ class KeepAlive
 {
 public:
 	KeepAlive() {};
-	~KeepAlive() {										
+	~KeepAlive() {
 		std::cout << "\nPress enter to exit.";
 		std::cin.get();
 	};
