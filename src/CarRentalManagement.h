@@ -7,9 +7,9 @@
  *
  *     Now it is safe to assume than a car can be rented by only one customer at a time,
  *     but can a customer rent multiple cars at once??
-
- *			for now: no! it's not a democracy
  */
+			//NOTE for now: no! it's not a democracy
+
 
 #ifndef CARRENTALMANAGEMENT_H_
 #define CARRENTALMANAGEMENT_H_

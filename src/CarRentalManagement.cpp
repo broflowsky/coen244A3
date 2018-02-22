@@ -19,16 +19,14 @@ CarRentalManagement::~CarRentalManagement() {
 
 void CarRentalManagement::addCar(string type, int id)
 {
-	Car*newCar = new Car(type, id);
-	listCar.push_back(*newCar);
-	//listCar.push_back((new Car(type, id)));
-	// i guess you can just do that
-	//listCar.push_back(*new Car(type, id));
+	//Car*newCar = new Car(type, id);
+	//listCar.push_back(*newCar);					
+	listCar.push_back(*new Car(type, id));
 }
 
 void CarRentalManagement::removeCar(const Car &c)
-{
-	listCar.remove(c);							//don't know if this the right way to do it (works as is)
+{												//NOTE don't know if this the right way to do it (works as is)
+	listCar.remove(c);							//removes car from the list
 }
 
 void CarRentalManagement::rentCar(Customer*customer,Car*car)
@@ -41,42 +39,57 @@ void CarRentalManagement::returnCar(Customer*customer)
 {
 	Car*modelT = &customer->getCar();			//get a pointer to the car
 	
-	if (modelT!=nullptr)
+	if (modelT == &customer->getCar())
 	{
 		modelT->setCustomer(nullptr);			//clear the customer assigned with the car
+		customer->setCar(nullptr);				//clear the car assigned to customer
 	}
-	else
+	else if (modelT!=&customer->getCar())
 	{
-		cout << "\nCustomer " << customer->getName() << ", " << customer->getCustomerID() << " does not have a car assigned to.";
-
+		cout << "\nCustomer " << customer->getName() << ", " << customer->getCustomerID() << " has a car that is not assigned to this customer"
+			<<"\nreturn car anyway?(y/n): ";
+		char temp;
+		cin >> temp;
+		if (temp == 'y' || temp == 'Y')
+		{
+			modelT->setCustomer(nullptr);			//clear the customer assigned with the car
+			customer->setCar(nullptr);				//clear the car assigned to customer
+		}
+	}
+	else if (modelT == nullptr)
+	{
+		cout << "\nCar " << modelT->getID() << " is already returned.";
+		customer->setCar(nullptr);					//clear the car assigned to customer
 	}
 }
 
-bool CarRentalManagement::isRented(const Car &)
+bool CarRentalManagement::isRented(const Car &c)
 {
-	return false;
+	return c.getAvailability();						//returns availability of the car
 }
 
-string CarRentalManagement::getTypeRentedCar(const Car &)
+string CarRentalManagement::getTypeRentedCar(const Car &c)
 {
-	return string();
+	return c.getType();								//returns type of car
 }
 ///////////////////////////////Customer//////////////////////////////////
 
-void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,bool isVip)//regular OR Vip customer
+void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,bool isVip) //constructor #1
 {
-	if(isVip)
+	if(isVip)																						//regular OR Vip customer
 		listCustomer.push_back(new VipCustomer(customerID,name,address,tel));
 	else listCustomer.push_back(new Customer(customerID,name,address,tel));
 }
-void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress){
+void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress)	//constructor #2
+{
 	listCustomer.push_back(new CorporateCustomer(customerID,name,address,tel,companyName,companyAddress));
 }
 
-void CarRentalManagement::removeCustomer(int customerId){
+void CarRentalManagement::removeCustomer(int customerId)
+{
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
-
+																									//
 		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
 			if((*iterator)->getCustomerID() == customerId)
 				break;
@@ -99,6 +112,7 @@ void CarRentalManagement::removeCustomer(string name){
 }
 Customer* CarRentalManagement::findCustomer(string name){
 	//unfortunately i cant re use findCustomer() in removeCustomer()
+	//NOTE why not? it looks like you jsut need to return an iterator. and that's just a simple pointer.
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 

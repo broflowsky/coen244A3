@@ -36,10 +36,12 @@ int main(){
 	cout << "\n\n\n\t\tTESTING CUSTOMER CLASS";
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////TESTING CRM /////////////////////////////
-
+	cout << "\n\n\n\t\tTESTING CRM CLASS\n";
 	Coen244CarCompany->addCustomer(1,"Valentin", "Montreal", "0123456789",false);						//regular customer
-	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer
-	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip custmer
+	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer	
+																										//NOTE they use to be in a bunker somewhere in europe. they were smart enough to declare to be a sovereign cuntry. it all changed after the raid.
+	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip custmer	
+																										//NOTE isn't he from Kenia?
 
 	cout	<<*Coen244CarCompany->findCustomer("Valentin")<<endl
 			<<*Coen244CarCompany->findCustomer(2)<<endl
