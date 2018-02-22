@@ -51,6 +51,7 @@ public:
 	void setID(int);
 	void setType(string);
 	void setAvailability(bool);
+	void setCustomer(Customer*);
 
 	int getID()const;
 	bool getAvailability()const;

@@ -58,6 +58,10 @@ void Customer::setTel(string tel){
 void Customer::setMaxRental(int newMax){
 	maxRentalPeriod = newMax;
 }
+void Customer::setCar(Car*car)
+{
+	this->carRented = car;
+}
 //////////////////////////////////////////
 ////////////     GET     /////////////////
 int Customer::getCustomerID()const{

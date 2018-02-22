@@ -7,6 +7,8 @@
  *
  *     Now it is safe to assume than a car can be rented by only one customer at a time,
  *     but can a customer rent multiple cars at once??
+
+ *			for now: no! it's not a democracy
  */
 
 #ifndef CARRENTALMANAGEMENT_H_
@@ -31,7 +33,7 @@ public:
 	void addCar(string type, int id);
 	void removeCar(const Car&);
 	void rentCar(Customer*customer, Car*car);
-	void returnCar();
+	void returnCar(Customer*customer);
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
 

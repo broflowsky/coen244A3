@@ -34,6 +34,7 @@ public:
 	void setAddress(string);
 	void setTel(string);
 	static void setMaxRental(int);
+	void setCar(Car*);
 
 //////////////   GETTERS    ///////////////////////
 	int getCustomerID()const;

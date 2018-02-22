@@ -32,11 +32,23 @@ void CarRentalManagement::removeCar(const Car &c)
 
 void CarRentalManagement::rentCar(Customer*customer,Car*car)
 {
-
+	customer->setCar(car);						//create relation between the two
+	car->setCustomer(customer);
 }
 
-void CarRentalManagement::returnCar()
+void CarRentalManagement::returnCar(Customer*customer)
 {
+	Car*modelT = &customer->getCar();			//get a pointer to the car
+	
+	if (modelT!=nullptr)
+	{
+		modelT->setCustomer(nullptr);			//clear the customer assigned with the car
+	}
+	else
+	{
+		cout << "\nCustomer " << customer->getName() << ", " << customer->getCustomerID() << " does not have a car assigned to.";
+
+	}
 }
 
 bool CarRentalManagement::isRented(const Car &)

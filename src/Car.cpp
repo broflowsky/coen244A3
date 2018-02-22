@@ -46,6 +46,10 @@ Car::~Car() {
 void Car::setAvailability(bool available){
 	isAvailable=available;
 }
+void Car::setCustomer(Customer *customer)
+{
+	this->whoIsRenting = customer;
+}
 void Car::setID(int id){
 	this->id=id;
 }
