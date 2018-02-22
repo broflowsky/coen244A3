@@ -19,7 +19,7 @@ protected:
 	string name;
 	string address;
 	string tel;
-	static int maxRentalPeriod; // children classed get different values
+	static int maxRentalPeriod; // children classes get different values
 	Car* carRented;
 
 public:
@@ -33,14 +33,15 @@ public:
 	void setName(string);
 	void setAddress(string);
 	void setTel(string);
+	static void setMaxRental(int);
 
 //////////////   GETTERS    ///////////////////////
 	int getCustomerID()const;
 	string getName()const;
 	string getAddress()const;
 	string getTel()const;
-	virtual int getMaxRental()const;
-	Car getCar()const;
+	static int getMaxRental();
+	Car& getCar()const;	//return by reference
 
 };
 #endif /* CUSTOMER_H_ */

@@ -37,6 +37,9 @@ void CorporateCustomer::setCompanyAddress(string address){
 void CorporateCustomer::setCompanyName(string name){
 	this->name=name;
 }
+void CorporateCustomer::setMaxRental(int newMax){
+	maxRentalPeriod = newMax;
+}
 //////////////////////////////////////////
 ////////////     GET     /////////////////
 string CorporateCustomer::getCompanyName()const{
@@ -45,7 +48,8 @@ string CorporateCustomer::getCompanyName()const{
 string CorporateCustomer::getCompanyAddress()const{
 	return address;
 }
-//////////////////////////////////////////
-int CorporateCustomer::getMaxRental()const{
+int CorporateCustomer::getMaxRental(){
 	 return maxRentalPeriod;
  }
+//////////////////////////////////////////
+

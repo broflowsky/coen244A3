@@ -41,7 +41,7 @@ Car::Car(const Car& c){
 	whoIsRenting = c.whoIsRenting;
 }
 Car::~Car() {
-	// TODO Auto-generated destructor stub
+	delete whoIsRenting;
 }
 void Car::setAvailability(bool available){
 	isAvailable=available;
@@ -60,4 +60,8 @@ bool Car::getAvailability()const{
 }
 string Car::getType()const{
 	return type;
+}
+Customer& Car::getCustomer()const{
+	//damn you, precedence!
+	return *this->whoIsRenting;	//we might want to make a copy of that customer and return it
 }

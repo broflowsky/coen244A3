@@ -17,9 +17,9 @@ public:
 	VipCustomer(const VipCustomer&);		//copy constructor
 	virtual ~VipCustomer();					//destructor
 
-
+	static void setMaxRental(int);
 	virtual void print(ostream& out)const;
-	virtual int getMaxRental()const;
+	static int getMaxRental();
 };
 
 #endif /* VIPCUSTOMER_H_ */

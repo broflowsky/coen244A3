@@ -21,8 +21,8 @@ using namespace std;
 
 class CarRentalManagement {
 private:
-	list<VipCustomer> listCustomer;
-	list<Car> listCar;
+	list<Customer*> listCustomer;	//dynamic binding
+	list<Car> listCar;				//static binding
 public:
 	CarRentalManagement();
 	virtual ~CarRentalManagement();
@@ -32,15 +32,23 @@ public:
 	void removeCar(const Car&);
 	void rentCar(Customer*customer, Car*car);
 	void returnCar();
-	void isRented(const Car&);
+	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
 
+
 	//					Customer Functions
-	void addCustomer();
-	void removeCustomer();
-	int getCustomerPrivilege();
-	void changePrivilege(int);
-	void isRenting(const Customer&);
+	void addCustomer(int customerID,string name,string address,string tel,bool isVip);//regular or Vip customer
+	void addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress);//overload for corporateCustomer
+
+	void removeCustomer(string name);
+	void removeCustomer(int customerId);
+
+	Customer* findCustomer(int customerId);
+	Customer* findCustomer(string name);	// might be usefull if we want to display info about a customer
+
+	int getCustomerPrivilege(const Customer&);
+	void changePrivilege(int newMaxRentalDuration, int customerType);// 0 reg, 1 corporate, 2 Vip
+	bool isRenting(const Customer&);
 	string getCustomerRank(const Customer&);
 
 };

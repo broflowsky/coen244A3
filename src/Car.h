@@ -55,6 +55,7 @@ public:
 	int getID()const;
 	bool getAvailability()const;
 	string getType()const;
+	Customer& getCustomer()const; //return by reference
 
 	///////////		operator overloads    //////////////
 	bool operator==(const Car&) const;

@@ -28,10 +28,11 @@ public:
 	//////////////   SETTERS    ///////////////////////
 	void setCompanyName(string);
 	void setCompanyAddress(string);
+	static void setMaxRental(int);
 
 	//////////////   GETTERS    ///////////////////////
 	string getCompanyName()const;
 	string getCompanyAddress()const;
-	virtual int getMaxRental()const;
+	static int getMaxRental();
 };
 #endif /* CORPORATECUSTOMER_H_ */

@@ -30,11 +30,12 @@ Customer::Customer(const Customer &c){
 	carRented = c.carRented;
 }
 Customer::~Customer() {
+	delete carRented;
 
 }
 void Customer::print(ostream& out)const{
 
-	out <<"\tCustomer Info"
+	out <<"\n\tCustomer Info"
 		<<"\nname: "<<name
 		<<"\naddress: "<<address
 		<<"\ntel: "<<tel
@@ -54,6 +55,9 @@ void Customer::setAddress(string address){
 void Customer::setTel(string tel){
 	this->tel=tel;
 }
+void Customer::setMaxRental(int newMax){
+	maxRentalPeriod = newMax;
+}
 //////////////////////////////////////////
 ////////////     GET     /////////////////
 int Customer::getCustomerID()const{
@@ -68,11 +72,11 @@ string Customer::getAddress()const{
 string Customer::getTel()const{
 	return tel;
 }
-int Customer::getMaxRental()const{
+int Customer::getMaxRental(){
 	return maxRentalPeriod;
 }
-Car Customer::getCar() const
+Car& Customer::getCar() const
 {
-	return this->carRented;				//needs some fixing...
+	return *this->carRented;		//should we return the pointer, or make a copy of the object and return that?
 }
 /////////////////////////////////////////

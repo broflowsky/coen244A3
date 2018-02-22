@@ -28,9 +28,12 @@ int main(){
 
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
 
-
 	cout<<"Car Rental Management System Driver";
 
+	Coen244CarCompany->addCustomer(1,"Valentin", "Montreal", "0123456789",false);
+	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");
 
+	cout<<*Coen244CarCompany->findCustomer("Valentin")<<endl
+		<<*Coen244CarCompany->findCustomer(2);
 	return 0;
 }
