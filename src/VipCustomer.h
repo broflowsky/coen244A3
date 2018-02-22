@@ -19,7 +19,7 @@ public:
 
 	static void setMaxRental(int);
 	virtual void print(ostream& out)const;
-	static int getMaxRental();
+	static int getMaxRental();	//cant have const qualifier
 };
 
 #endif /* VIPCUSTOMER_H_ */

@@ -7,6 +7,7 @@
 
 #include "CarRentalManagement.h"
 
+
 CarRentalManagement::CarRentalManagement() {
 
 }
@@ -136,29 +137,44 @@ Customer* CarRentalManagement::findCustomer(int customerId){
 			if((*iterator)->getCustomerID() == customerId)
 				break;
 		if(iterator == end){
-			cout<<"\nNo match for this ID.\n";
+			cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
 			return nullptr;
 		}
 		else return *iterator;
 }
+int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass const ref since casting is used
+{														  //ref cant be null
 
-int CarRentalManagement::getCustomerPrivilege(const Customer& c)
-{
-	return c.getMaxRental();
+	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but (Corporate or derived of Corporate)
+	//non zero evaluates to true ; cast has local scope
+		return CorporateCustomer::getMaxRental();
+
+	else if(dynamic_cast<VipCustomer*>(&c))		//handy little thing right here
+
+		return VipCustomer::getMaxRental();
+
+	else return Customer::getMaxRental();
 }
 
-void CarRentalManagement::changePrivilege(int newMaxRentalDuration, int customerType)
+void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)//README useful link for this : https://stackoverflow.com/questions/4589226/type-checking-in-c
 {
-	//TODO  changePrivilege function
+	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but (Corporate or derived of Corporate)
+												//non zero evaluates to true ; cast has local scope
+		CorporateCustomer::setMaxRental(newMaxRentalDuration);
+
+	else if(dynamic_cast<VipCustomer*>(&c))		//handy little thing right here
+
+		VipCustomer::setMaxRental(newMaxRentalDuration);
+
+	else Customer::setMaxRental(newMaxRentalDuration);
+}
+bool CarRentalManagement::isRenting(const Customer &c)
+{
+
+	return (&c.getCar()==nullptr);//FIXME i have not tested this!!
 }
 
-
-bool CarRentalManagement::isRenting(const Customer &)
-{
-	return false;//TODO isRenting function
-}
-
-string CarRentalManagement::getCustomerRank(const Customer &)
+string CarRentalManagement::getCustomerRank(const Customer &c)
 {
 	return string();//TODO getCustRank function
 }

@@ -41,8 +41,8 @@ public:
 	string getName()const;
 	string getAddress()const;
 	string getTel()const;
-	static int getMaxRental();
-	Car& getCar()const;	//return by reference
+	static int getMaxRental();	//cannot have const qualifier
+	Car& getCar()const;			//return by reference
 
 };
 #endif /* CUSTOMER_H_ */
