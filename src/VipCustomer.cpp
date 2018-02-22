@@ -26,6 +26,6 @@ void VipCustomer::print(ostream& out)const{
 void VipCustomer::setMaxRental(int newMax){
 	maxRentalPeriod = newMax;
 }
-int VipCustomer::getMaxRental(){
+int VipCustomer::getMaxRental(){		//cant have const qualifier
 	return maxRentalPeriod;
 }

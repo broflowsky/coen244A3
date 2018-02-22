@@ -46,8 +46,8 @@ public:
 	Customer* findCustomer(int customerId);
 	Customer* findCustomer(string name);	// might be usefull if we want to display info about a customer
 
-	int getCustomerPrivilege(const Customer&);
-	void changePrivilege(int newMaxRentalDuration, int customerType);// 0 reg, 1 corporate, 2 Vip
+	int getCustomerPrivilege(Customer&)const;
+	void changePrivilege(int newMaxRentalDuration, Customer&);
 	bool isRenting(const Customer&);
 	string getCustomerRank(const Customer&);
 

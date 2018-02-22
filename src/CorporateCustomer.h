@@ -33,6 +33,6 @@ public:
 	//////////////   GETTERS    ///////////////////////
 	string getCompanyName()const;
 	string getCompanyAddress()const;
-	static int getMaxRental();
+	static int getMaxRental();		//cant have const qualifier
 };
 #endif /* CORPORATECUSTOMER_H_ */

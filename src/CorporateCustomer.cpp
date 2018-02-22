@@ -48,7 +48,7 @@ string CorporateCustomer::getCompanyName()const{
 string CorporateCustomer::getCompanyAddress()const{
 	return address;
 }
-int CorporateCustomer::getMaxRental(){
+int CorporateCustomer::getMaxRental(){		//cant have const qualifier
 	 return maxRentalPeriod;
  }
 //////////////////////////////////////////
