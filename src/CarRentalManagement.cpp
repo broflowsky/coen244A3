@@ -19,14 +19,13 @@ CarRentalManagement::~CarRentalManagement() {
 
 void CarRentalManagement::addCar(string type, int id)
 {
-	//Car*newCar = new Car(type, id);
-	//listCar.push_back(*newCar);					
 	listCar.push_back(*new Car(type, id));
 }
 
 void CarRentalManagement::removeCar(const Car &c)
-{												//NOTE don't know if this the right way to do it (works as is)
-	listCar.remove(c);							//removes car from the list
+{			//NOTE implies that you already have a reference to that car, hence you need a function that gives you that, look at what i did
+			//Also .remove() does a search through the list, so you gotta figure out the most efficient way to do this
+	listCar.remove(c);
 }
 
 void CarRentalManagement::rentCar(Customer*customer,Car*car)
@@ -35,6 +34,17 @@ void CarRentalManagement::rentCar(Customer*customer,Car*car)
 	car->setCustomer(customer);
 }
 
+/*TODO NOTE
+ * Car* findCar*()
+ * rentCar() should: check that given customer CAN rent that car (availability, privileges)
+ * 					 update the car availability,
+ * 			 		 add that car to carRented in Customer,
+ * 			 		 add that customer to Car
+ *
+ *returnCar() should : undo the above
+ *
+ *
+ * */
 void CarRentalManagement::returnCar(Customer*customer)
 {
 	Car*modelT = &customer->getCar();			//get a pointer to the car
@@ -108,11 +118,8 @@ void CarRentalManagement::removeCustomer(string name){
 		if(iterator == end)
 			cout<<"\nNo match for this ID.\n";
 		else listCustomer.erase(iterator);
-
 }
 Customer* CarRentalManagement::findCustomer(string name){
-	//NOTE why not? it looks like you jsut need to return an iterator. and that's just a simple pointer.
-
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 

@@ -37,19 +37,6 @@ public:
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
 
-	/*TODO NOTE
-	 * Car* findCar*()
-	 * rentCar() should: check that given customer CAN rent that car (availability, privileges)
-	 * 					 update the car availability,
-	 * 			 		 add that car to carRented in Customer,
-	 * 			 		 add that customer to Car
-	 *
-	 *returnCar() should : undo the above
-	 *
-	 *
-	 * */
-
-
 	//					Customer Functions
 	void addCustomer(int customerID,string name,string address,string tel,bool isVip);//regular or Vip customer
 	void addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress);//overload for corporateCustomer
