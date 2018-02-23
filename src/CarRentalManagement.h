@@ -21,10 +21,18 @@ public:
 	CarRentalManagement();
 	virtual ~CarRentalManagement();
 
+	void getListsSizes();//NOTE what it really does is printing the inventory void printInventory()?
 	//					Car Functions
 	void addCar(string type, int id);
+
 	void removeCar(Car&);
-	void rentCar(Customer*customer, Car*car);
+	void removeCar(int id);
+
+	void rentCar(Customer*,Car*);
+	void rentCar(int customerId, int carId);
+
+	Car* getCar(int id);
+
 	void returnCar(Customer*customer);
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
@@ -36,7 +44,7 @@ public:
 	void removeCustomer(string name);
 	void removeCustomer(int customerId);
 
-	//NOTE we should stick to standard convention. if func only returns an object it usually have prefix get-
+	//NOTE the get and set applies really just to the data members. these functions do more than that, and it d be confusing
 	Customer* findCustomer(int customerId);
 	Customer* findCustomer(string name);
 

@@ -9,8 +9,8 @@
 
 
 CarRentalManagement::CarRentalManagement() {
-	listCar.push_back(*new Car("regular", 1));
-	listCar.push_back(*new Car("irregular", 2));
+	listCar.push_back(*new Car("regular", 1));//FIXME to remove
+	listCar.push_back(*new Car("luxe", 2));	//NOTE luxe is the other type
 }
 
 CarRentalManagement::~CarRentalManagement() {
@@ -22,29 +22,39 @@ void CarRentalManagement::addCar(string type, int id)
 {
 	listCar.push_back(*new Car(type, id));
 }
+Car* CarRentalManagement::getCar(int id){
+	list<Car>::iterator iterator;
 
-void CarRentalManagement::removeCar( Car &c)
-{												//NOTE don't know if this the right way to do it (works as is)
-	list<Car>::iterator it=listCar.begin();
-	//FIXME IT'S THE WRONG C! FUCK.
-	cout << "\nLooking tourh list for: " << &c << " " << c.getID() << endl;	//debug
-	for (size_t i=0; it != listCar.end(); ++it,++i)
-	{
-		cout << i << " " << it._Ptr << " " << it->getID() << endl;				//debug
-		if (it->getID() == c.getID())
-		{
-			cout << "\nSuccess!";		//debug
-			break;
+		for(iterator = listCar.begin();iterator != listCar.end(); ++iterator)//checking for available room at date entered
+			if(iterator->getID() == id)
+				break;
+		if(iterator == listCar.end()){
+			cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
+			return nullptr;
 		}
-	}
-	cout << "\nEnd!";					//debug
-	//listCar.erase(it);							//removes car from the list
+		else return &*iterator;
+}
+void CarRentalManagement::removeCar(Car &c)
+{	//NOTE if you are passing the car by ref, you can simply do listCar.remove(c)
+	//since .remove does the search for you. But practically you wont have that reference, hence the findCar(id)
+	listCar.remove(c);
+}
+void CarRentalManagement::removeCar(int id){//README
+	listCar.remove(*getCar(id));
 }
 
-void CarRentalManagement::rentCar(Customer*customer,Car*car)
+void CarRentalManagement::rentCar(Customer * customer,Car *car)
 {
-	customer->setCar(car);						//create relation between the two
-	car->setCustomer(customer);
+	if(dynamic_cast<Customer*>(customer))
+	{
+		if(car->getType()=="luxe")
+			cout<<"\nCustomer cannot rent this car.\n";
+	}
+	else{
+		car->setAvailability(false);
+		customer->setCar(car);
+		car->setCustomer(customer);
+	}
 }
 
 /*TODO NOTE
@@ -94,7 +104,7 @@ string CarRentalManagement::getTypeRentedCar(const Car &c)
 {
 	return c.getType();								//returns type of car
 }
-Car * CarRentalManagement::getCar(int id)
+/*Car * CarRentalManagement::getCar(int id)
 {
 	for each (Car car in listCar)
 	{
@@ -102,7 +112,7 @@ Car * CarRentalManagement::getCar(int id)
 			return &car;		//FIXME this returns wrong bject!
 	}
 	return nullptr;
-}
+}*/
 ///////////////////////////////Customer//////////////////////////////////
 
 void CarRentalManagement::getListsSizes()
