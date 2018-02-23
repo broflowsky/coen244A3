@@ -8,7 +8,9 @@
 #include "CorporateCustomer.h"
 #include <iostream>
 using namespace std;
+
 int CorporateCustomer::maxRentalPeriod = 35;
+
 CorporateCustomer::CorporateCustomer(int id,string name,string address,string tel,
 									string companyName,string companyAddress):
 									Customer(id,name,address,tel)
@@ -48,7 +50,7 @@ string CorporateCustomer::getCompanyName()const{
 string CorporateCustomer::getCompanyAddress()const{
 	return address;
 }
-int CorporateCustomer::getMaxRental(){		//cant have const qualifier
+int CorporateCustomer::getMaxRental(){
 	 return maxRentalPeriod;
  }
 //////////////////////////////////////////

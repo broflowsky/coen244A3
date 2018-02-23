@@ -20,8 +20,10 @@ class CorporateCustomer: public Customer {
 public:
 	CorporateCustomer(int=0,string="_name",string="_address",string="_tel",
 					string="_companyName",string="_companyAddress"); //default and parameter constructor
-	CorporateCustomer(const CorporateCustomer&);		//copy constructor
-	virtual ~CorporateCustomer();				//destructor
+
+	CorporateCustomer(const CorporateCustomer&);	//copy constructor
+
+	virtual ~CorporateCustomer();					//destructor
 
 	virtual void print(ostream&)const;
 
@@ -33,6 +35,6 @@ public:
 	//////////////   GETTERS    ///////////////////////
 	string getCompanyName()const;
 	string getCompanyAddress()const;
-	static int getMaxRental();		//cant have const qualifier
+	static int getMaxRental();
 };
 #endif /* CORPORATECUSTOMER_H_ */

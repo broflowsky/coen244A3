@@ -47,6 +47,17 @@ void CarRentalManagement::rentCar(Customer*customer,Car*car)
 	car->setCustomer(customer);
 }
 
+/*TODO NOTE
+ * Car* findCar*()
+ * rentCar() should: check that given customer CAN rent that car (availability, privileges)
+ * 					 update the car availability,
+ * 			 		 add that car to carRented in Customer,
+ * 			 		 add that customer to Car
+ *
+ *returnCar() should : undo the above
+ *
+ *
+ * */
 void CarRentalManagement::returnCar(Customer*customer)
 {
 	Car*modelT = &customer->getCar();			//get a pointer to the car
@@ -115,12 +126,12 @@ void CarRentalManagement::removeCustomer(int customerId)
 {
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
-																									//
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+
+		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 			if((*iterator)->getCustomerID() == customerId)
 				break;
 		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";
+			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
 		else listCustomer.erase(iterator);
 
 }
@@ -128,25 +139,22 @@ void CarRentalManagement::removeCustomer(string name){
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 			if(! (*iterator)->getName().compare(name))
 				break;
 		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";
+			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
 		else listCustomer.erase(iterator);
-
 }
 Customer* CarRentalManagement::findCustomer(string name){
-	//unfortunately i cant re use findCustomer() in removeCustomer()
-	//NOTE why not? it looks like you jsut need to return an iterator. and that's just a simple pointer.
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 
-	for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+	for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 		if(! (*iterator)->getName().compare(name))
 			break;
 	if(iterator == end){
-		cout<<"\nNo match for this name.\n";
+		cout<<"\nNo match for this name.\n";//IMPROVE exception handling
 		return nullptr;
 	}
 	else return *iterator;
@@ -164,10 +172,9 @@ Customer* CarRentalManagement::findCustomer(int customerId){
 		}
 		else return *iterator;
 }
-int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass const ref since casting is used
-{														  //ref cant be null
-
-	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but (Corporate or derived of Corporate)
+int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass as const referece since casting is used
+{
+	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but Corporate or derived of Corporate
 	//non zero evaluates to true ; cast has local scope
 		return CorporateCustomer::getMaxRental();
 
@@ -184,11 +191,21 @@ void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)
 												//non zero evaluates to true ; cast has local scope
 		CorporateCustomer::setMaxRental(newMaxRentalDuration);
 
-	else if(dynamic_cast<VipCustomer*>(&c))		//handy little thing right here
+	else if(dynamic_cast<VipCustomer*>(&c))
 
 		VipCustomer::setMaxRental(newMaxRentalDuration);
 
 	else Customer::setMaxRental(newMaxRentalDuration);
+}
+void CarRentalManagement::changePrivilege(int newMaxRentalDuration, string type){
+	if(!type.compare("regular"))
+		Customer::setMaxRental(newMaxRentalDuration);
+	else if(!type.compare("corporate"))
+		CorporateCustomer::setMaxRental(newMaxRentalDuration);
+	else if(!type.compare("vip"))
+		VipCustomer::setMaxRental(newMaxRentalDuration);
+	else cout<<"\nType not recognized.\n";//IMPROVE exception handling
+
 }
 bool CarRentalManagement::isRenting(const Customer &c)
 {
@@ -197,7 +214,8 @@ bool CarRentalManagement::isRenting(const Customer &c)
 
 string CarRentalManagement::getCustomerRank(Customer &c)
 {
-	if(dynamic_cast<CorporateCustomer*>(&c))//NOTE insight of how it works return pointer => 0 nullptr, else the address
+	//if c not of class Corporate, we get a nullptr (0 => false), otherwise get an address(0xXXX => no zero => true)
+	if(dynamic_cast<CorporateCustomer*>(&c))
 		return "Corporate";
 	else if(dynamic_cast<VipCustomer*>(&c))
 		return "Vip";
