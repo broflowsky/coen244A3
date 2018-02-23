@@ -111,8 +111,8 @@ void CarRentalManagement::removeCustomer(string name){
 
 }
 Customer* CarRentalManagement::findCustomer(string name){
-	//unfortunately i cant re use findCustomer() in removeCustomer()
 	//NOTE why not? it looks like you jsut need to return an iterator. and that's just a simple pointer.
+
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 
@@ -138,10 +138,9 @@ Customer* CarRentalManagement::findCustomer(int customerId){
 		}
 		else return *iterator;
 }
-int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass const ref since casting is used
-{														  //ref cant be null
-
-	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but (Corporate or derived of Corporate)
+int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass as const referece since casting is used
+{
+	if(dynamic_cast<CorporateCustomer*>(&c))	//false if c is anything but Corporate or derived of Corporate
 	//non zero evaluates to true ; cast has local scope
 		return CorporateCustomer::getMaxRental();
 
@@ -158,11 +157,21 @@ void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)
 												//non zero evaluates to true ; cast has local scope
 		CorporateCustomer::setMaxRental(newMaxRentalDuration);
 
-	else if(dynamic_cast<VipCustomer*>(&c))		//handy little thing right here
+	else if(dynamic_cast<VipCustomer*>(&c))
 
 		VipCustomer::setMaxRental(newMaxRentalDuration);
 
 	else Customer::setMaxRental(newMaxRentalDuration);
+}
+void CarRentalManagement::changePrivilege(int newMaxRentalDuration, string type){
+	if(!type.compare("regular"))
+		Customer::setMaxRental(newMaxRentalDuration);
+	else if(!type.compare("corporate"))
+		CorporateCustomer::setMaxRental(newMaxRentalDuration);
+	else if(!type.compare("vip"))
+		VipCustomer::setMaxRental(newMaxRentalDuration);
+	else cout<<"\nType not recognized.\n";//IMPROVE exception handling
+
 }
 bool CarRentalManagement::isRenting(const Customer &c)
 {

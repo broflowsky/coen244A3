@@ -24,42 +24,71 @@ public:
 #endif
 
 int main(){
+
+
 	KeepAlive k{}; // for VS users
+
+
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
+
+
+
 
 	cout<<"Car Rental Management System Driver"<<endl;
 	/////////////////////////////////////TESTING CAR //////////////////////////////
-	cout << "\n\t\tTESTING CAR CLASS";//NOTE we have dedicated drivers for testing those functions
+	cout << "\n\t\tTESTING CAR CLASS";														//NOTE we have dedicated drivers for testing those functions/class
 	///////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////TESTING CUSTOMER /////////////////////////
 	cout << "\n\n\n\t\tTESTING CUSTOMER CLASS";
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////TESTING CRM /////////////////////////////
 	cout << "\n\n\n\t\tTESTING CRM CLASS\n";
+
+
+	//adding customers
 	Coen244CarCompany->addCustomer(1,"Valentin", "Montreal", "0123456789",false);						//regular customer
-	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer	
-																										//NOTE they use to be in a bunker somewhere in europe. they were smart enough to declare to be a sovereign cuntry. it all changed after the raid.
-	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip custmer	
-																										//NOTE isn't he from Kenia?
+	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer
+	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip customer
 
-	cout	<<*Coen244CarCompany->findCustomer("Valentin")<<endl
-			<<*Coen244CarCompany->findCustomer(2)<<endl
-			<<*Coen244CarCompany->findCustomer("Barack")<<endl;
 
-	cout	<<"\nNow getting the maximum rental periods of all types of customers.\n"
-			<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
-			<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
-			<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
 
-	cout	<<"\n\nChanging the maximum rental period to to 30,50,60:\n";
-			Coen244CarCompany->changePrivilege(30,*Coen244CarCompany->findCustomer("Valentin"));
-			Coen244CarCompany->changePrivilege(50,*Coen244CarCompany->findCustomer("Arseniy"));
-			Coen244CarCompany->changePrivilege(60,*Coen244CarCompany->findCustomer("Barack"));
 
-	cout	<<"\nNow getting the maximum rental periods of all types of customers:\n"
-				<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
-				<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
-				<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
+
+	//printing info about customers
+	cout<<*Coen244CarCompany->findCustomer("Valentin")<<endl 	//finding customer by name
+		<<*Coen244CarCompany->findCustomer(2)<<endl				//finding customer by ID number
+		<<*Coen244CarCompany->findCustomer("Barack")<<endl;
+
+
+
+
+
+	//printing the maximum rental periods (privileges) for each class
+	cout<<"\nNow getting the maximum rental periods of all types of customers.\n"
+		<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
+		<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
+		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
+
+
+
+
+
+	//changing the privileges of each classes
+	//using either an instance of each class to specify which privilege to modify or a string specifying the type
+	cout<<"\n\nChanging the maximum rental period to to 30,50,60:\n";
+
+	Coen244CarCompany->changePrivilege(30,*Coen244CarCompany->findCustomer("Valentin"));  	//customer Valentin is of type regular
+	Coen244CarCompany->changePrivilege(50,*Coen244CarCompany->findCustomer("Arseniy"));		//customer Arseniy is of type corporate
+	Coen244CarCompany->changePrivilege(60,"vip");											//using the overloaded function
+
+
+
+
+	//printing the updated privileges
+	cout<<"\nNow getting the maximum rental periods of all types of customers:\n"
+		<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
+		<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
+		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
 
 
 

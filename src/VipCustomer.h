@@ -10,16 +10,26 @@
 
 #include "Customer.h"
 
-class VipCustomer: public Customer {
-	static int maxRentalPeriod;
-public:
-	VipCustomer(int=0,string="_name",string="_address",string="_tel"); //default and parameter constructor
-	VipCustomer(const VipCustomer&);		//copy constructor
-	virtual ~VipCustomer();					//destructor
+class VipCustomer: public Customer{
 
+	static int maxRentalPeriod;
+
+public:
+	//default and parameter constructor
+	VipCustomer(int=0,string="_name",string="_address",string="_tel");
+
+	//copy constructor
+	VipCustomer(const VipCustomer&);
+
+	//destructor
+	virtual ~VipCustomer();
+
+	// Setter and Getter
 	static void setMaxRental(int);
+	static int getMaxRental();
+
+	//Print function
 	virtual void print(ostream& out)const;
-	static int getMaxRental();	//cant have const qualifier
 };
 
 #endif /* VIPCUSTOMER_H_ */

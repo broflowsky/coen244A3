@@ -8,6 +8,8 @@
 #include "Customer.h"
 #include <iostream>
 using namespace std;
+
+
 int Customer::maxRentalPeriod = 20;
 
 ostream& operator<<(ostream& out, const Customer& c){
@@ -31,7 +33,6 @@ Customer::Customer(const Customer &c){
 }
 Customer::~Customer() {
 	delete carRented;
-
 }
 void Customer::print(ostream& out)const{
 
@@ -81,6 +82,6 @@ int Customer::getMaxRental(){
 }
 Car& Customer::getCar() const
 {
-	return *this->carRented;		//should we return the pointer, or make a copy of the object and return that?
+	return *this->carRented;
 }
 /////////////////////////////////////////

@@ -8,6 +8,7 @@
 #include "Car.h"
 #include <iostream>
 using namespace std;
+
 ostream& operator<<(ostream& out, const Car& c){
 
 	 out <<"\n\tCar Info"
@@ -16,6 +17,7 @@ ostream& operator<<(ostream& out, const Car& c){
 		 <<"\nThis car is "<<(c.isAvailable?"available.":"not available.");
 	return out;
 }
+
 bool Car::operator==(const Car& c)const{
 	if(&c != this){//check self assignment
 		if(id != c.id)
@@ -66,6 +68,5 @@ string Car::getType()const{
 	return type;
 }
 Customer& Car::getCustomer()const{
-	//damn you, precedence!
-	return *this->whoIsRenting;	//we might want to make a copy of that customer and return it
+	return *this->whoIsRenting;
 }

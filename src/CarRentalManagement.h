@@ -36,7 +36,8 @@ public:
 	void returnCar(Customer*customer);
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
-	/*TODO
+
+	/*TODO NOTE
 	 * Car* findCar*()
 	 * rentCar() should: check that given customer CAN rent that car (availability, privileges)
 	 * 					 update the car availability,
@@ -49,7 +50,6 @@ public:
 	 * */
 
 
-
 	//					Customer Functions
 	void addCustomer(int customerID,string name,string address,string tel,bool isVip);//regular or Vip customer
 	void addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress);//overload for corporateCustomer
@@ -58,13 +58,14 @@ public:
 	void removeCustomer(int customerId);
 
 	Customer* findCustomer(int customerId);
-	Customer* findCustomer(string name);	// might be usefull if we want to display info about a customer
+	Customer* findCustomer(string name);
 
 	int getCustomerPrivilege(Customer&)const;
 	void changePrivilege(int newMaxRentalDuration, Customer&);
+	void changePrivilege(int newMaxRentalDuration, string type);
 
 	bool isRenting(const Customer&);
-	string getCustomerRank(Customer&); // cant use const since dynamic_cast
+	string getCustomerRank(Customer&);
 
 };
 
