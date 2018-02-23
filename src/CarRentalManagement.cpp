@@ -99,12 +99,12 @@ void CarRentalManagement::removeCustomer(int customerId)
 {
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
-																									//
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+
+		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 			if((*iterator)->getCustomerID() == customerId)
 				break;
 		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";
+			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
 		else listCustomer.erase(iterator);
 
 }
@@ -112,22 +112,22 @@ void CarRentalManagement::removeCustomer(string name){
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 			if(! (*iterator)->getName().compare(name))
 				break;
 		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";
+			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
 		else listCustomer.erase(iterator);
 }
 Customer* CarRentalManagement::findCustomer(string name){
 	list<Customer*>::iterator iterator;
 	list<Customer*>::iterator end;
 
-	for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
+	for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
 		if(! (*iterator)->getName().compare(name))
 			break;
 	if(iterator == end){
-		cout<<"\nNo match for this name.\n";
+		cout<<"\nNo match for this name.\n";//IMPROVE exception handling
 		return nullptr;
 	}
 	else return *iterator;
@@ -187,7 +187,8 @@ bool CarRentalManagement::isRenting(const Customer &c)
 
 string CarRentalManagement::getCustomerRank(Customer &c)
 {
-	if(dynamic_cast<CorporateCustomer*>(&c))//NOTE insight of how it works return pointer => 0 nullptr, else the address
+	//if c not of class Corporate, we get a nullptr (0 => false), otherwise get an address(0xXXX => no zero => true)
+	if(dynamic_cast<CorporateCustomer*>(&c))
 		return "Corporate";
 	else if(dynamic_cast<VipCustomer*>(&c))
 		return "Vip";

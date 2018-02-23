@@ -2,15 +2,7 @@
  * CarRentalManagement.h
  *
  *  Created on: Feb 21, 2018
- *
- *
- *
- *     Now it is safe to assume than a car can be rented by only one customer at a time,
- *     but can a customer rent multiple cars at once??
  */
-			//NOTE for now: no! it's not a democracy
-
-
 #ifndef CARRENTALMANAGEMENT_H_
 #define CARRENTALMANAGEMENT_H_
 
