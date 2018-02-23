@@ -31,11 +31,12 @@ public:
 
 	//					Car Functions
 	void addCar(string type, int id);
-	void removeCar(const Car&);
+	void removeCar(Car&);
 	void rentCar(Customer*customer, Car*car);
 	void returnCar(Customer*customer);
 	bool isRented(const Car&);
 	string getTypeRentedCar(const Car&);
+	Car*getCar(int id);
 	/*TODO
 	 * Car* findCar*()
 	 * rentCar() should: check that given customer CAN rent that car (availability, privileges)
@@ -47,6 +48,8 @@ public:
 	 *
 	 *
 	 * */
+	//DEBUG FUNC/////////////////
+	void getListsSizes();
 
 
 
@@ -57,6 +60,7 @@ public:
 	void removeCustomer(string name);
 	void removeCustomer(int customerId);
 
+	//NOTE we should stick to standard convention. if func only returns an object it usually have prefix get-
 	Customer* findCustomer(int customerId);
 	Customer* findCustomer(string name);	// might be usefull if we want to display info about a customer
 

@@ -9,7 +9,8 @@
 
 
 CarRentalManagement::CarRentalManagement() {
-
+	listCar.push_back(*new Car("regular", 1));
+	listCar.push_back(*new Car("irregular", 2));
 }
 
 CarRentalManagement::~CarRentalManagement() {
@@ -19,14 +20,25 @@ CarRentalManagement::~CarRentalManagement() {
 
 void CarRentalManagement::addCar(string type, int id)
 {
-	//Car*newCar = new Car(type, id);
-	//listCar.push_back(*newCar);					
 	listCar.push_back(*new Car(type, id));
 }
 
-void CarRentalManagement::removeCar(const Car &c)
+void CarRentalManagement::removeCar( Car &c)
 {												//NOTE don't know if this the right way to do it (works as is)
-	listCar.remove(c);							//removes car from the list
+	list<Car>::iterator it=listCar.begin();
+	//FIXME IT'S THE WRONG C! FUCK.
+	cout << "\nLooking tourh list for: " << &c << " " << c.getID() << endl;	//debug
+	for (size_t i=0; it != listCar.end(); ++it,++i)
+	{
+		cout << i << " " << it._Ptr << " " << it->getID() << endl;				//debug
+		if (it->getID() == c.getID())
+		{
+			cout << "\nSuccess!";		//debug
+			break;
+		}
+	}
+	cout << "\nEnd!";					//debug
+	//listCar.erase(it);							//removes car from the list
 }
 
 void CarRentalManagement::rentCar(Customer*customer,Car*car)
@@ -38,16 +50,20 @@ void CarRentalManagement::rentCar(Customer*customer,Car*car)
 void CarRentalManagement::returnCar(Customer*customer)
 {
 	Car*modelT = &customer->getCar();			//get a pointer to the car
-	
-	if (modelT == &customer->getCar())
+
+	if (&modelT->getCustomer()==customer)
 	{
 		modelT->setCustomer(nullptr);			//clear the customer assigned with the car
 		customer->setCar(nullptr);				//clear the car assigned to customer
 	}
-	else if (modelT!=&customer->getCar())
+	else if (&modelT->getCustomer()==nullptr)
 	{
-		cout << "\nCustomer " << customer->getName() << ", " << customer->getCustomerID() << " has a car that is not assigned to this customer"
-			<<"\nreturn car anyway?(y/n): ";
+		cout << "\nCar " << modelT->getID() << " already returned";
+		customer->setCar(nullptr);				//clearing association on customer side
+	}
+	else
+	{
+		cout << "\nCar " << modelT->getID() << " is associated with different customer. \nReturn car anyway?(y/n)";
 		char temp;
 		cin >> temp;
 		if (temp == 'y' || temp == 'Y')
@@ -55,11 +71,6 @@ void CarRentalManagement::returnCar(Customer*customer)
 			modelT->setCustomer(nullptr);			//clear the customer assigned with the car
 			customer->setCar(nullptr);				//clear the car assigned to customer
 		}
-	}
-	else if (modelT == nullptr)
-	{
-		cout << "\nCar " << modelT->getID() << " is already returned.";
-		customer->setCar(nullptr);					//clear the car assigned to customer
 	}
 }
 
@@ -72,7 +83,22 @@ string CarRentalManagement::getTypeRentedCar(const Car &c)
 {
 	return c.getType();								//returns type of car
 }
+Car * CarRentalManagement::getCar(int id)
+{
+	for each (Car car in listCar)
+	{
+		if (car.getID() == id)
+			return &car;		//FIXME this returns wrong bject!
+	}
+	return nullptr;
+}
 ///////////////////////////////Customer//////////////////////////////////
+
+void CarRentalManagement::getListsSizes()
+{
+	cout << "\n Cars: " << this->listCar.size();
+	cout << "\n Customers: " << this->listCustomer.size()<<endl;
+}
 
 void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,bool isVip) //constructor #1
 {
