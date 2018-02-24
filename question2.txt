@@ -1,0 +1,6 @@
+One way would be to create a class Date and a class Reservation.
+The Reservation class would have two Date* : dateRental and dateReturn
+A Reservation* res would be added to the Customer class.
+
+To know when a car is due, we would look at the Reservation* through the Customer* in Car,
+and to issue a warning to a customer whose car is due, we would compare dateReturn with the current date.
