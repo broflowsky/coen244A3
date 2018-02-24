@@ -24,66 +24,88 @@ void CarRentalManagement::addCar(string type, int id)
 Car* CarRentalManagement::getCar(int id){
 	list<Car>::iterator iterator;
 
-		for(iterator = listCar.begin();iterator != listCar.end(); ++iterator)//checking for available room at date entered
-			if(iterator->getID() == id)										//NOTE what with the comment above? it's everywhere
+		for(iterator = listCar.begin();iterator != listCar.end(); ++iterator)
+			if(iterator->getID() == id)
 				break;
 		if(iterator == listCar.end()){
 			cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
 			return nullptr;
 		}
 		else return &*iterator;
-		//NOTE is this a 'conversion' to a simple pointer? and waht for? there is ._Prt member of iterator
 }
 void CarRentalManagement::removeCar(Car &c)
-{	//NOTE ~if you are passing the car by ref, you can simply do listCar.remove(c)
-	//~since .remove does the search for you. But practically you wont have that reference, hence the findCar(id)
-	//NOTE I tried few combinations. it didn't work. I thought it didn't work beyound simple types like int and such.
+{
 	listCar.remove(c);
 }
 void CarRentalManagement::removeCar(int id){
 	listCar.remove(*getCar(id));
 }
-
 void CarRentalManagement::rentCar(Customer * customer,Car *car)
 {
-	if(dynamic_cast<Customer*>(customer))
-	{
-		if(car->getType()=="luxe")
-			cout<<"\nCustomer cannot rent this car.\n";
-	}
-	else{
-		car->setAvailability(false);
-		customer->setCar(car);
-		car->setCustomer(customer);
-	}
+	if(customer != nullptr && car != nullptr)
+		if(dynamic_cast<Customer*>(customer))
+		{
+			if(car->getType()=="luxury")
+				cout<<"\nCustomer cannot rent this car.\n";//IMPROVE throw exception
+		}
+		else{
+			car->setAvailability(false);
+			customer->setCar(car);
+			car->setCustomer(customer);
+		}
+	else cout<<"\nInvalid input: nullptr ";//IMPROVE throw exception
 }
-
 void CarRentalManagement::rentCar(int customerId, int carId)
 {
-	Customer*cuPrt = this->findCustomer(customerId);
-	Car*caPtr = this->getCar(customerId);
-	if (cuPrt==nullptr || caPtr==nullptr)
+	Customer*customerPrt = this->findCustomer(customerId);
+	Car*carPtr = this->getCar(carId);
+	if (customerPrt==nullptr || carPtr==nullptr)
 	{
 		cout << "\nInvalid param!";
 		return;
 	}
 	//rentCar() should: check that given customer CAN rent that car(availability, privileges)
-	if (&cuPrt->getCar()==nullptr)
-		if (caPtr->getAvailability() == true)
+	if (&customerPrt->getCar()==nullptr)//checking if customer doesnt have a car
+		if (carPtr->getAvailability() == true)
 		{
-			if (caPtr->getType()=="Luxury")
-				if(dynamic_cast<Customer*>(cuPrt))
+			if (carPtr->getType()=="luxury")
+				if(dynamic_cast<Customer*>(customerPrt))
 				{
-					cout << "\nNo access!";
+					cout << "\nNo access!";//IMPROVE throw exception
 					return;
 				}		
 		//*add that car to carRented in Customer,
 		//*add that customer to Car
-			cuPrt->setCar(caPtr);
-			caPtr->setCustomer(cuPrt);
+			customerPrt->setCar(carPtr);
+			carPtr->setCustomer(customerPrt);
 		}
-		//* 					 update the car availability,
-	caPtr->setAvailability(false);
+		//					 update the car availability,
+	carPtr->setAvailability(false);//FIXME that would occur even though the car was not rent
+	//NOTE possible solution
+	/*Customer*customer = this->findCustomer(customerId);
+	Car*car = this->getCar(carId);
+
+	//checking that car and customer exist
+	if(car != nullptr && customer != nullptr)
+	{
+		//checking that customer has no car
+		if(&customer->getCar()!= nullptr)
+			//checking car is available
+			if(car->getAvailability() == true)
+			{
+				//checking if car is luxury and customer is regular
+				if(car->getType() == "luxury" && dynamic_cast<Customer*>(customer))
+					cout<<"\nCustomer cannot rent luxury car.\n";//IMPROVE throw exception
+				else
+				{
+					customer->setCar(car);
+					car->setCustomer(customer);
+					car->setAvailability(false);
+				}
+			}
+	}
+	else cout<<"\nInvalid ID numbers.\n";//IMPROVE throw exception
+*/
 
 }
 
