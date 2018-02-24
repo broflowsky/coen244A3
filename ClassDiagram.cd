@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Car">
-    <Position X="8.5" Y="0.75" Width="2" />
+    <Position X="8.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAQAAACAAAAIAQAAARABAAAAgAEAEAAACgI=</HashCode>
+      <HashCode>AAEAAAAAAAQAAACAAAAIAQAAERABAAAAgAEAEAAACgI=</HashCode>
       <FileName>src\Car.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarRentalManagement">
     <Position X="11" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AQAQAAACAASAQAQAAAAAAgAAAAIAAAAxAQCAAACAAgA=</HashCode>
+      <HashCode>AQAQAAACAASBQAQAAAAAAgAAAAIAAAAxAQCAAACAAgA=</HashCode>
       <FileName>src\CarRentalManagement.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,7 +24,7 @@
   <Class Name="Customer">
     <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAUAAQAAAAQgABBAAIAAAAAAAAIEAABQAAUUCgAAgAA=</HashCode>
+      <HashCode>AAUAAQAAAAQgABBAAIAAAAAAAAJEAABQAAUUCgAAgAA=</HashCode>
       <FileName>src\Customer.h</FileName>
     </TypeIdentifier>
   </Class>

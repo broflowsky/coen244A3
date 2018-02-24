@@ -21,7 +21,9 @@ public:
 	CarRentalManagement();
 	virtual ~CarRentalManagement();
 
-	void getListsSizes();//NOTE what it really does is printing the inventory void printInventory()?
+	void getListsSizes();//NOTE ~what it really does is printing the inventory void printInventory()?
+	//NOTE yes.
+
 	//					Car Functions
 	void addCar(string type, int id);
 
@@ -44,7 +46,6 @@ public:
 	void removeCustomer(string name);
 	void removeCustomer(int customerId);
 
-	//NOTE the get and set applies really just to the data members. these functions do more than that, and it d be confusing
 	Customer* findCustomer(int customerId);
 	Customer* findCustomer(string name);
 

@@ -4,6 +4,11 @@
  *  Created on: Feb 21, 2018
  *      Author: vpuyf
  */
+//README
+/*Car types:
+	Regular
+	Luxugy
+*/
 
 #include "CarRentalManagement.h"
 #include <iostream>
@@ -26,13 +31,9 @@ public:
 int main(){
 
 
-	KeepAlive k{}; // for VS users
-
+	KeepAlive k{}; // for final .exe console program
 
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
-
-
-
 
 	cout<<"Car Rental Management System Driver"<<endl;
 
@@ -49,13 +50,11 @@ int main(){
 	Coen244CarCompany->getListsSizes();
 	//testing removeCar()
 	cout << "\nRemoving car.ID = 3";
-	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));
+	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));		//FIXME remove car still doesn't remove
 	Coen244CarCompany->getListsSizes();
+	//testing rentCar()
+
 	cout << "\n\n\n";
-
-
-
-
 
 
 
@@ -65,18 +64,11 @@ int main(){
 		<<*Coen244CarCompany->findCustomer(2)<<endl				//finding customer by ID number
 		<<*Coen244CarCompany->findCustomer("Barack")<<endl;
 
-
-
-
-
 	//printing the maximum rental periods (privileges) for each class
 	cout<<"\nNow getting the maximum rental periods of all types of customers.\n"
 		<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
 		<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
 		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
-
-
-
 
 
 	//changing the privileges of each classes
@@ -86,9 +78,6 @@ int main(){
 	Coen244CarCompany->changePrivilege(30,*Coen244CarCompany->findCustomer("Valentin"));  	//customer Valentin is of type regular
 	Coen244CarCompany->changePrivilege(50,*Coen244CarCompany->findCustomer("Arseniy"));		//customer Arseniy is of type corporate
 	Coen244CarCompany->changePrivilege(60,"vip");											//using the overloaded function
-
-
-
 
 	//printing the updated privileges
 	cout<<"\nNow getting the maximum rental periods of all types of customers:\n"

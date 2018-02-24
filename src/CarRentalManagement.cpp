@@ -9,8 +9,7 @@
 
 
 CarRentalManagement::CarRentalManagement() {
-	listCar.push_back(*new Car("regular", 1));//FIXME to remove
-	listCar.push_back(*new Car("luxe", 2));	//NOTE luxe is the other type
+
 }
 
 CarRentalManagement::~CarRentalManagement() {
@@ -26,20 +25,22 @@ Car* CarRentalManagement::getCar(int id){
 	list<Car>::iterator iterator;
 
 		for(iterator = listCar.begin();iterator != listCar.end(); ++iterator)//checking for available room at date entered
-			if(iterator->getID() == id)
+			if(iterator->getID() == id)										//NOTE what with the comment above? it's everywhere
 				break;
 		if(iterator == listCar.end()){
 			cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
 			return nullptr;
 		}
 		else return &*iterator;
+		//NOTE is this a 'conversion' to a simple pointer? and waht for? there is ._Prt member of iterator
 }
 void CarRentalManagement::removeCar(Car &c)
-{	//NOTE if you are passing the car by ref, you can simply do listCar.remove(c)
-	//since .remove does the search for you. But practically you wont have that reference, hence the findCar(id)
+{	//NOTE ~if you are passing the car by ref, you can simply do listCar.remove(c)
+	//~since .remove does the search for you. But practically you wont have that reference, hence the findCar(id)
+	//NOTE I tried few combinations. it didn't work. I thought it didn't work beyound simple types like int and such.
 	listCar.remove(c);
 }
-void CarRentalManagement::removeCar(int id){//README
+void CarRentalManagement::removeCar(int id){
 	listCar.remove(*getCar(id));
 }
 
@@ -55,6 +56,35 @@ void CarRentalManagement::rentCar(Customer * customer,Car *car)
 		customer->setCar(car);
 		car->setCustomer(customer);
 	}
+}
+
+void CarRentalManagement::rentCar(int customerId, int carId)
+{
+	Customer*cuPrt = this->findCustomer(customerId);
+	Car*caPtr = this->getCar(customerId);
+	if (cuPrt==nullptr || caPtr==nullptr)
+	{
+		cout << "\nInvalid param!";
+		return;
+	}
+	//rentCar() should: check that given customer CAN rent that car(availability, privileges)
+	if (&cuPrt->getCar()==nullptr)
+		if (caPtr->getAvailability() == true)
+		{
+			if (caPtr->getType()=="Luxury")
+				if(dynamic_cast<Customer*>(cuPrt))
+				{
+					cout << "\nNo access!";
+					return;
+				}		
+		//*add that car to carRented in Customer,
+		//*add that customer to Car
+			cuPrt->setCar(caPtr);
+			caPtr->setCustomer(cuPrt);
+		}
+		//* 					 update the car availability,
+	caPtr->setAvailability(false);
+
 }
 
 /*TODO NOTE
