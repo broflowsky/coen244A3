@@ -1,6 +1,11 @@
 One way would be to create a class Date and a class Reservation.
 The Reservation class would have two Date* : dateRental and dateReturn
 A Reservation* res would be added to the Customer class.
+A list of Reservation* would be added to the CarRentalManagement system.
+
+When a new Reservation is made, we add a Reservation* to the list,
+and link that reservation* to the Reservation* in Customer.
+That list<Reservation*> gives us the history of the reservations made.
 
 To know when a car is due, we would look at the Reservation* through the Customer* in Car,
 and to issue a warning to a customer whose car is due, we would compare dateReturn with the current date.
