@@ -89,11 +89,6 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 
 /*TODO NOTE
  * Car* findCar*()
- * rentCar() should: check that given customer CAN rent that car (availability, privileges)
- * 					 update the car availability,
- * 			 		 add that car to carRented in Customer,
- * 			 		 add that customer to Car
- *
  *returnCar() should : undo the above
  *
  *
@@ -134,15 +129,6 @@ string CarRentalManagement::getTypeRentedCar(const Car &c)
 {
 	return c.getType();								//returns type of car
 }
-/*Car * CarRentalManagement::getCar(int id)
-{
-	for each (Car car in listCar)
-	{
-		if (car.getID() == id)
-			return &car;		//FIXME this returns wrong bject!
-	}
-	return nullptr;
-}*/
 ///////////////////////////////Customer//////////////////////////////////
 
 void CarRentalManagement::getListsSizes()
