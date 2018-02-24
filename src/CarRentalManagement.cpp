@@ -81,7 +81,7 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 		}
 		//					 update the car availability,
 	carPtr->setAvailability(false);//FIXME that would occur even though the car was not rent
-	//NOTE possible solution
+	//NOTE possible solution for rentCar(carID, customerID)
 	/*Customer*customer = this->findCustomer(customerId);
 	Car*car = this->getCar(carId);
 
@@ -89,20 +89,23 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 	if(car != nullptr && customer != nullptr)
 	{
 		//checking that customer has no car
-		if(&customer->getCar()!= nullptr)
+		if(&customer->getCar()== nullptr)
+		{
 			//checking car is available
 			if(car->getAvailability() == true)
 			{
 				//checking if car is luxury and customer is regular
 				if(car->getType() == "luxury" && dynamic_cast<Customer*>(customer))
 					cout<<"\nCustomer cannot rent luxury car.\n";//IMPROVE throw exception
-				else
-				{
+				else{
 					customer->setCar(car);
 					car->setCustomer(customer);
 					car->setAvailability(false);
 				}
 			}
+			else cout<<"\nCar is not available.\n";//IMPROVE throw exception
+		}
+		else cout<<"\nCustomer already has a car.\n"//IMPROVE throw exception
 	}
 	else cout<<"\nInvalid ID numbers.\n";//IMPROVE throw exception
 */
