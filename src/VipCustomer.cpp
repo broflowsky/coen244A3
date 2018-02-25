@@ -21,7 +21,7 @@ VipCustomer::~VipCustomer() {
 }
 void VipCustomer::print(ostream& out)const{
 	Customer::print(out);
-	out<<"\nCustomer is Vip.";
+	out<<"\n\tCustomer is Vip.";
 }
 void VipCustomer::setMaxRental(int newMax){
 	maxRentalPeriod = newMax;

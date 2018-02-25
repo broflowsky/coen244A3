@@ -7,7 +7,14 @@
 
 #include "CarRentalManagement.h"
 
+ostream& operator<<(ostream& out, const CarRentalManagement& c){
 
+	out <<"\nCar Rental System Information"
+		<<"\n\tCars in Inventory: "<<c.listCar.size()
+		<<"\n\tCustomers registered: "<<c.listCustomer.size();
+
+	return out;
+}
 CarRentalManagement::CarRentalManagement() {
 
 }
@@ -112,7 +119,7 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 
 }
 
-/*TODO NOTE
+/*TODO
  * Car* findCar*()
  *returnCar() should : undo the above
  *

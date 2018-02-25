@@ -3,11 +3,6 @@
  *
  *  Created on: Feb 21, 2018
  *      Author: vpuyf
- */
-//README
-/*Car types:
-	Regular
-	Luxugy
 */
 
 #include "CarRentalManagement.h"
@@ -27,7 +22,7 @@ public:
 	};
 };
 #endif
-
+//NOTE Car types: Regular, Luxury
 int main(){
 
 
@@ -35,22 +30,29 @@ int main(){
 
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
 
-	cout<<"Car Rental Management System Driver"<<endl;
+	cout<<"Car Rental Management System Driver\n";
+
+	//printing info about the company
+	cout<<*Coen244CarCompany;
+
 
 	//adding customers
 	Coen244CarCompany->addCustomer(1,"Valentin", "Montreal", "0123456789",false);						//regular customer
-	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer	
-																										//NOTE they use to be in a bunker somewhere in europe. they were smart enough to declare to be a sovereign cuntry. it all changed after the raid.
+	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer
 	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip custmer	
-																										//NOTE isn't he from Kenia?
-	//testing addCar()
-	Coen244CarCompany->getListsSizes();
-	cout << "\nAdd a car: type: regular, ID: 3";
+
+
+	//adding Cars
 	Coen244CarCompany->addCar("Regular", 3);
-	Coen244CarCompany->getListsSizes();
+	Coen244CarCompany->addCar("Luxury", 10);
+	Coen244CarCompany->addCar("Regular", 21);
+
+
+	//printing info about the company
+	cout<<endl<<*Coen244CarCompany;
 	//testing removeCar()
 	cout << "\nRemoving car.ID = 3";
-	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));		//FIXME remove car still doesn't remove
+	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));
 	Coen244CarCompany->getListsSizes();
 	//testing rentCar()
 
@@ -85,6 +87,14 @@ int main(){
 		<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
 		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
 
+	//removing a customer
+	Coen244CarCompany->removeCustomer(3);
+
+	//printing info about the company
+	cout<<endl<<*Coen244CarCompany;
+
+	cout <<"\nChecking that the customer was removed.";
+	cout <<(Coen244CarCompany->findCustomer(3)==nullptr?"\nCustomer was erased.":"\nCustomer is still here!");
 
 
 

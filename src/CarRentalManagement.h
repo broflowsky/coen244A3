@@ -14,6 +14,8 @@
 using namespace std;
 
 class CarRentalManagement {
+
+	friend ostream& operator<<(ostream&, const CarRentalManagement&);
 private:
 	list<Customer*> listCustomer;	//dynamic binding
 	list<Car> listCar;				//static binding
@@ -21,8 +23,7 @@ public:
 	CarRentalManagement();
 	virtual ~CarRentalManagement();
 
-	void getListsSizes();//NOTE ~what it really does is printing the inventory void printInventory()?
-	//NOTE yes.
+	void getListsSizes();//NOTE overloaded stream operator. Same behavior as this function
 
 	//					Car Functions
 	void addCar(string type, int id);

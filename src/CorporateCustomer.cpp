@@ -27,8 +27,8 @@ CorporateCustomer::~CorporateCustomer() {
 }
 void CorporateCustomer::print(ostream& out)const{
 	Customer::print(out);
-	out <<"\nCompany name: "<<companyName
-		<<"\nCompany address: "<<companyAddress;
+	out <<"\n\tCompany name: "<<companyName
+		<<"\n\tCompany address: "<<companyAddress;
 
 }
 //////////////////////////////////////////

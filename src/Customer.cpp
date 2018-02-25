@@ -36,11 +36,11 @@ Customer::~Customer() {
 }
 void Customer::print(ostream& out)const{
 
-	out <<"\n\tCustomer Info"
-		<<"\nname: "<<name
-		<<"\naddress: "<<address
-		<<"\ntel: "<<tel
-		<<"\nis renting a car: "<<(carRented == nullptr?"no":"yes");
+	out <<"\nCustomer Info"
+		<<"\n\tname: "<<name
+		<<"\n\taddress: "<<address
+		<<"\n\ttel: "<<tel
+		<<"\n\tis renting a car: "<<(carRented == nullptr?"no":"yes");
 }
 //////////////////////////////////////////
 ////////////     SET     /////////////////

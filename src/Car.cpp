@@ -11,10 +11,10 @@ using namespace std;
 
 ostream& operator<<(ostream& out, const Car& c){
 
-	 out <<"\n\tCar Info"
-		 <<"\nCar type: "<<c.type
-		 <<"\nID:"<<c.id
-		 <<"\nThis car is "<<(c.isAvailable?"available.":"not available.");
+	 out <<"\nCar Info"
+		 <<"\n\tCar type: "<<c.type
+		 <<"\n\tID:"<<c.id
+		 <<"\n\tThis car is "<<(c.isAvailable?"available.":"not available.");
 	return out;
 }
 
