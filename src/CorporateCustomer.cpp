@@ -34,10 +34,10 @@ void CorporateCustomer::print(ostream& out)const{
 //////////////////////////////////////////
 ////////////     SET     /////////////////
 void CorporateCustomer::setCompanyAddress(string address){
-	this->address=address;
+	this->companyAddress=address;
 }
 void CorporateCustomer::setCompanyName(string name){
-	this->name=name;
+	this->companyName=name;
 }
 void CorporateCustomer::setMaxRental(int newMax){
 	maxRentalPeriod = newMax;
@@ -45,10 +45,10 @@ void CorporateCustomer::setMaxRental(int newMax){
 //////////////////////////////////////////
 ////////////     GET     /////////////////
 string CorporateCustomer::getCompanyName()const{
-	return name;
+	return companyName;
 }
 string CorporateCustomer::getCompanyAddress()const{
-	return address;
+	return companyAddress;
 }
 int CorporateCustomer::getMaxRental(){
 	 return maxRentalPeriod;
