@@ -9,11 +9,13 @@
 
 ostream& operator<<(ostream& out, const CarRentalManagement& c){
 
-	out <<"\nCar Rental System Information"
-		<<"\n\tCars in Inventory: "<<c.listCar.size()
-		<<"\n\tCustomers registered: "<<c.listCustomer.size();
-
+	c.print(out);
 	return out;
+}
+void CarRentalManagement::print(ostream& out)const{
+	out <<"\nCar Rental System Information"
+		<<"\n\tCars in Inventory: "<<listCar.size()
+		<<"\n\tCustomers registered: "<<listCustomer.size();
 }
 CarRentalManagement::CarRentalManagement() {
 
@@ -52,44 +54,20 @@ void CarRentalManagement::rentCar(Customer * customer,Car *car)
 	if(customer != nullptr && car != nullptr)
 		if(dynamic_cast<Customer*>(customer))
 		{
-			if(car->getType()=="luxury")
+			if(car->getType()=="Luxury")
 				cout<<"\nCustomer cannot rent this car.\n";//IMPROVE throw exception
 		}
 		else{
 			car->setAvailability(false);
 			customer->setCar(car);
 			car->setCustomer(customer);
+			cout<<"\nCar successfully rented!.";
 		}
 	else cout<<"\nInvalid input: nullptr ";//IMPROVE throw exception
 }
 void CarRentalManagement::rentCar(int customerId, int carId)
 {
-	Customer*customerPrt = this->findCustomer(customerId);
-	Car*carPtr = this->getCar(carId);
-	if (customerPrt==nullptr || carPtr==nullptr)
-	{
-		cout << "\nInvalid param!";
-		return;
-	}
-	//rentCar() should: check that given customer CAN rent that car(availability, privileges)
-	if (&customerPrt->getCar()==nullptr)//checking if customer doesnt have a car
-		if (carPtr->getAvailability() == true)
-		{
-			if (carPtr->getType()=="luxury")
-				if(dynamic_cast<Customer*>(customerPrt))
-				{
-					cout << "\nNo access!";//IMPROVE throw exception
-					return;
-				}		
-		//*add that car to carRented in Customer,
-		//*add that customer to Car
-			customerPrt->setCar(carPtr);
-			carPtr->setCustomer(customerPrt);
-		}
-		//					 update the car availability,
-	carPtr->setAvailability(false);//FIXME that would occur even though the car was not rent
-	//NOTE possible solution for rentCar(carID, customerID) (works!)
-	/*Customer*customer = this->findCustomer(customerId);
+	Customer*customer = this->findCustomer(customerId);
 	Car*car = this->getCar(carId);
 
 	//checking that car and customer exist
@@ -102,12 +80,14 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 			if(car->getAvailability() == true)
 			{
 				//checking if car is luxury and customer is regular
-				if(car->getType() == "luxury" && dynamic_cast<Customer*>(customer))
+				if(car->getType() == "Luxury" && dynamic_cast<Customer*>(customer))
 					cout<<"\nCustomer cannot rent luxury car.\n";//IMPROVE throw exception
-				else{
+				else
+				{//rent is valid
 					customer->setCar(car);
 					car->setCustomer(customer);
 					car->setAvailability(false);
+					cout<<"\nCar successfully rented!.";
 				}
 			}
 			else cout<<"\nCar is not available.\n";//IMPROVE throw exception
@@ -115,57 +95,24 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 		else cout<<"\nCustomer already has a car.\n";//IMPROVE throw exception
 	}
 	else cout<<"\nInvalid ID numbers.\n";//IMPROVE throw exception
-*/
+
 
 }
-
-/*TODO
- * Car* findCar*()
- *returnCar() should : undo the above
- *
- *
- * */
-void CarRentalManagement::returnCar(Customer*customer)
-{
-	Car*modelT = &customer->getCar();			//get a pointer to the car
-
-	if (&modelT->getCustomer()==customer)
-	{
-		modelT->setCustomer(nullptr);			//clear the customer assigned with the car
-		customer->setCar(nullptr);				//clear the car assigned to customer
-	}
-	else if (&modelT->getCustomer()==nullptr)
-	{
-		cout << "\nCar " << modelT->getID() << " already returned";
-		customer->setCar(nullptr);				//clearing association on customer side
-	}
-	else
-	{
-		cout << "\nCar " << modelT->getID() << " is associated with different customer. \nReturn car anyway?(y/n)";
-		char temp;
-		cin >> temp;
-		if (temp == 'y' || temp == 'Y')
-		{
-			modelT->setCustomer(nullptr);			//clear the customer assigned with the car
-			customer->setCar(nullptr);				//clear the car assigned to customer
-		}
-	}
-}
-//NOTE possible wolution for return Car (works!)
-/*void CarRentalManagement::returnCar(Customer* c){
-	if(c != nullptr){
+void CarRentalManagement::returnCar(Customer* c){
+	if(c != nullptr)
+	{//checking that customer exists
 		Car* toBeReturned = &c->getCar();
-		if(toBeReturned != nullptr){
+		if(toBeReturned != nullptr)
+		{//checking that customer was renting a car
 			toBeReturned->setAvailability(true);
 			toBeReturned->setCustomer(nullptr);
 			c->setCar(nullptr);
+			cout<<"\nCar successfully returned!.";
 		}
 		else cout<<"\nCustomer is not renting any car.\n";//IMPROVE throw exception
-
-
 	}
 	else cout<<"\nCustomer does not exist. (nullptr)\n";//IMPROVE throw exception
-}*/
+}
 bool CarRentalManagement::isRented(const Car &c)
 {
 	return c.getAvailability();						//returns availability of the car
@@ -197,35 +144,39 @@ void CarRentalManagement::addCustomer(int customerID,string name,string address,
 void CarRentalManagement::removeCustomer(int customerId)
 {
 	list<Customer*>::iterator iterator;
-	list<Customer*>::iterator end;
-
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
-			if((*iterator)->getCustomerID() == customerId)
-				break;
-		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
-		else listCustomer.erase(iterator);
+	for(iterator = listCustomer.begin();iterator != listCustomer.end(); ++iterator)
+		if((*iterator)->getCustomerID() == customerId)
+			break;
+	if(iterator == listCustomer.end())
+		cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
+	else
+	{
+		listCustomer.erase(iterator);
+		cout<<"\nCustomer successfully removed!";
+	}
 
 }
 void CarRentalManagement::removeCustomer(string name){
 	list<Customer*>::iterator iterator;
-	list<Customer*>::iterator end;
 
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
-			if(! (*iterator)->getName().compare(name))
-				break;
-		if(iterator == end)
-			cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
-		else listCustomer.erase(iterator);
+	for(iterator = listCustomer.begin();iterator != listCustomer.end(); ++iterator)
+		if(! (*iterator)->getName().compare(name))
+			break;
+	if(iterator == listCustomer.end())
+		cout<<"\nNo match for this ID.\n";//IMPROVE exception handling
+	else
+	{
+		listCustomer.erase(iterator);
+		cout<<"\nCustomer successfully removed!";
+	}
 }
 Customer* CarRentalManagement::findCustomer(string name){
 	list<Customer*>::iterator iterator;
-	list<Customer*>::iterator end;
 
-	for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)
+	for(iterator = listCustomer.begin();iterator != listCustomer.end(); ++iterator)
 		if(! (*iterator)->getName().compare(name))
 			break;
-	if(iterator == end){
+	if(iterator == listCustomer.end()){
 		cout<<"\nNo match for this name.\n";//IMPROVE exception handling
 		return nullptr;
 	}
@@ -233,16 +184,15 @@ Customer* CarRentalManagement::findCustomer(string name){
 }
 Customer* CarRentalManagement::findCustomer(int customerId){
 	list<Customer*>::iterator iterator;
-	list<Customer*>::iterator end;
 
-		for(iterator = listCustomer.begin(),end = listCustomer.end();iterator != end; ++iterator)//checking for available room at date entered
-			if((*iterator)->getCustomerID() == customerId)
-				break;
-		if(iterator == end){
-			cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
-			return nullptr;
-		}
-		else return *iterator;
+	for(iterator = listCustomer.begin();iterator != listCustomer.end(); ++iterator)//checking for available room at date entered
+		if((*iterator)->getCustomerID() == customerId)
+			break;
+	if(iterator == listCustomer.end()){
+		cout<<"\nNo match for this ID.\n";//IMPROVE throw exception
+		return nullptr;
+	}
+	else return *iterator;
 }
 int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass as const referece since casting is used
 {
@@ -270,14 +220,13 @@ void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)
 	else Customer::setMaxRental(newMaxRentalDuration);
 }
 void CarRentalManagement::changePrivilege(int newMaxRentalDuration, string type){
-	if(!type.compare("regular"))
+	if(!type.compare("Regular"))
 		Customer::setMaxRental(newMaxRentalDuration);
 	else if(!type.compare("corporate"))
 		CorporateCustomer::setMaxRental(newMaxRentalDuration);
 	else if(!type.compare("vip"))
 		VipCustomer::setMaxRental(newMaxRentalDuration);
 	else cout<<"\nType not recognized.\n";//IMPROVE exception handling
-
 }
 bool CarRentalManagement::isRenting(const Customer &c)
 {
@@ -291,6 +240,6 @@ string CarRentalManagement::getCustomerRank(Customer &c)
 		return "Corporate";
 	else if(dynamic_cast<VipCustomer*>(&c))
 		return "Vip";
-	else return "regular";
+	else return "Regular";
 }
 

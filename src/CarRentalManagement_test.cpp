@@ -22,7 +22,7 @@ public:
 	};
 };
 #endif
-//NOTE Car types: Regular, Luxury
+//NOTE Car types: Regular, Luxury CASE SENSITIVE
 int main(){
 
 
@@ -37,12 +37,14 @@ int main(){
 
 
 	//adding customers
+	cout<<"\n\nadding customers";
 	Coen244CarCompany->addCustomer(1,"Valentin", "Montreal", "0123456789",false);						//regular customer
 	Coen244CarCompany->addCustomer(2,"Arseniy", "Toronto", "321654687", "The Pirate Bay","Somewhere");	//corporate customer
 	Coen244CarCompany->addCustomer(3, "Barack", "United-States", "032 5351 3", true);					//Vip custmer	
 
 
 	//adding Cars
+	cout<<"\nadding cars";
 	Coen244CarCompany->addCar("Regular", 3);
 	Coen244CarCompany->addCar("Luxury", 10);
 	Coen244CarCompany->addCar("Regular", 21);
@@ -50,25 +52,41 @@ int main(){
 
 	//printing info about the company
 	cout<<endl<<*Coen244CarCompany;
-	//testing removeCar()
-	cout << "\nRemoving car.ID = 3";
-	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));
-	Coen244CarCompany->getListsSizes();
-	//testing rentCar()
-
-	cout << "\n\n\n";
-	Coen244CarCompany->rentCar(1,21);
-	Coen244CarCompany->returnCar(Coen244CarCompany->findCustomer(2));
-
 
 
 	//printing info about customers
-	cout<<*Coen244CarCompany->findCustomer("Valentin")<<endl 	//finding customer by name
+	cout<<"\n\nprinting info about customers:"
+		<<*Coen244CarCompany->findCustomer("Valentin")<<endl 	//finding customer by name
 		<<*Coen244CarCompany->findCustomer(2)<<endl				//finding customer by ID number
 		<<*Coen244CarCompany->findCustomer("Barack")<<endl;
 
+
+	//printing info about cars
+	cout<<"\nprinting info about cars:"
+		<<*Coen244CarCompany->getCar(3)
+		<<*Coen244CarCompany->getCar(10)
+		<<*Coen244CarCompany->getCar(21);
+
+
+	//renting Cars
+	cout<<"\nRenting cars:";
+	Coen244CarCompany->rentCar(2,21);	//corporate customer renting a regular car
+	Coen244CarCompany->rentCar(Coen244CarCompany->findCustomer("Valentin"),Coen244CarCompany->getCar(10)); //regular customer renting a luxury car: program should NOT let it happen
+
+
+	//Returning the car rented
+	cout<<"\n\nReturning a car";
+	Coen244CarCompany->returnCar(Coen244CarCompany->findCustomer(2));
+
+	//testing removeCar()
+	cout << "\n\nRemoving car.ID = 3";
+	Coen244CarCompany->removeCar(*Coen244CarCompany->getCar(3));
+	Coen244CarCompany->print(cout);
+
+
+
 	//printing the maximum rental periods (privileges) for each class
-	cout<<"\nNow getting the maximum rental periods of all types of customers.\n"
+	cout<<"\n\nNow getting the maximum rental periods of all types of customers.\n"
 		<<"Regular: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(1))
 		<<"\nCorporate: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(2))
 		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
@@ -89,14 +107,14 @@ int main(){
 		<<"\nVip: "<<Coen244CarCompany->getCustomerPrivilege(*Coen244CarCompany->findCustomer(3));
 
 	//removing a customer
+	cout<<"\n\nRemoving customer id=3";
 	Coen244CarCompany->removeCustomer(3);
 
 	//printing info about the company
 	cout<<endl<<*Coen244CarCompany;
 
-	cout <<"\nChecking that the customer was removed.";
+	cout <<"\n\nChecking that the customer was removed.";
 	cout <<(Coen244CarCompany->findCustomer(3)==nullptr?"\nCustomer was erased.":"\nCustomer is still here!");
-
 
 
 

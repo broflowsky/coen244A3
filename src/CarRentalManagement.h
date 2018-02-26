@@ -24,7 +24,7 @@ public:
 	virtual ~CarRentalManagement();
 
 	void getListsSizes();//NOTE overloaded stream operator. Same behavior as this function
-
+	void print(ostream&)const;
 	//					Car Functions
 	void addCar(string type, int id);
 
