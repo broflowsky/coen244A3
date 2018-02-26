@@ -88,7 +88,7 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 		}
 		//					 update the car availability,
 	carPtr->setAvailability(false);//FIXME that would occur even though the car was not rent
-	//NOTE possible solution for rentCar(carID, customerID)
+	//NOTE possible solution for rentCar(carID, customerID) (works!)
 	/*Customer*customer = this->findCustomer(customerId);
 	Car*car = this->getCar(carId);
 
@@ -112,7 +112,7 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 			}
 			else cout<<"\nCar is not available.\n";//IMPROVE throw exception
 		}
-		else cout<<"\nCustomer already has a car.\n"//IMPROVE throw exception
+		else cout<<"\nCustomer already has a car.\n";//IMPROVE throw exception
 	}
 	else cout<<"\nInvalid ID numbers.\n";//IMPROVE throw exception
 */
@@ -151,7 +151,21 @@ void CarRentalManagement::returnCar(Customer*customer)
 		}
 	}
 }
+//NOTE possible wolution for return Car (works!)
+/*void CarRentalManagement::returnCar(Customer* c){
+	if(c != nullptr){
+		Car* toBeReturned = &c->getCar();
+		if(toBeReturned != nullptr){
+			toBeReturned->setAvailability(true);
+			toBeReturned->setCustomer(nullptr);
+			c->setCar(nullptr);
+		}
+		else cout<<"\nCustomer is not renting any car.\n";//IMPROVE throw exception
 
+
+	}
+	else cout<<"\nCustomer does not exist. (nullptr)\n";//IMPROVE throw exception
+}*/
 bool CarRentalManagement::isRented(const Car &c)
 {
 	return c.getAvailability();						//returns availability of the car

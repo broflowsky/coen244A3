@@ -57,7 +57,8 @@ int main(){
 	//testing rentCar()
 
 	cout << "\n\n\n";
-
+	Coen244CarCompany->rentCar(1,21);
+	Coen244CarCompany->returnCar(Coen244CarCompany->findCustomer(2));
 
 
 
