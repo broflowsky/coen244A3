@@ -36,7 +36,7 @@ public:
 
 	///////////		operator overloads    //////////////
 	bool operator==(const Car&) const;
-	bool operator!=(const Car& c)const{return !(Car::operator==(c));};
+	bool operator!=(const Car& c)const;
 
 };
 

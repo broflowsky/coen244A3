@@ -29,6 +29,9 @@ bool Car::operator==(const Car& c)const{
 	}
 	return true;
 }
+bool Car::operator !=(const Car& c)const{
+	return !( Car::operator==(c) );
+}
 Car::Car(string type, int id){
 	this->type=type;
 	this->id=id;
