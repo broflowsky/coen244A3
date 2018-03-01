@@ -75,6 +75,19 @@ int main(){
 	Coen244CarCompany->rentCar(Coen244CarCompany->findCustomer("Valentin"),Coen244CarCompany->getCar(10)); //regular customer renting a luxury car: program should NOT let it happen
 
 
+	//testing if customer is renting
+	cout<<"\nChecking if a customers are renting:"
+		<<"\nIs "<<Coen244CarCompany->findCustomer(2)->getName()<<" renting ? "
+		<<(Coen244CarCompany->isRenting(*Coen244CarCompany->findCustomer(2))?"yes.\n":"no.\n")
+		<<"\nIs "<<Coen244CarCompany->findCustomer(1)->getName()<<" renting ? "
+		<<(Coen244CarCompany->isRenting(*Coen244CarCompany->findCustomer(1))?"yes.\n":"no.\n");
+
+
+	//testing if cars are rented
+	cout<<"\nChecking if cars are rented"
+		<<"\nIs Car ID" <<*Coen244CarCompany->getCar(10)<< " rented ? "
+		<<(Coen244CarCompany->isRented(*Coen244CarCompany->getCar(10))?"yes.\n":"\nno.");
+
 	//Returning the car rented
 	cout<<"\n\nReturning a car";
 	Coen244CarCompany->returnCar(Coen244CarCompany->findCustomer(2));
