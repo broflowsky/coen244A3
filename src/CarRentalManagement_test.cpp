@@ -15,7 +15,7 @@ using namespace std;
 class KeepAlive
 {
 public:
-	KeepAlive() {};
+	KeepAlive(){};
 	~KeepAlive() {
 		std::cout << "\nPress enter to exit.";
 		std::cin.get();
@@ -26,7 +26,7 @@ public:
 int main(){
 
 
-	KeepAlive k{}; // for final .exe console program
+	KeepAlive k; // for final .exe console program
 
 	CarRentalManagement *Coen244CarCompany = new CarRentalManagement();
 
@@ -71,6 +71,7 @@ int main(){
 	//renting Cars
 	cout<<"\nRenting cars:";
 	Coen244CarCompany->rentCar(2,21);	//corporate customer renting a regular car
+	cout<<"\n\nTrying to make an illegal rent (customer does not have the privileges):";
 	Coen244CarCompany->rentCar(Coen244CarCompany->findCustomer("Valentin"),Coen244CarCompany->getCar(10)); //regular customer renting a luxury car: program should NOT let it happen
 
 
@@ -94,7 +95,7 @@ int main(){
 
 	//changing the privileges of each classes
 	//using either an instance of each class to specify which privilege to modify or a string specifying the type
-	cout<<"\n\nChanging the maximum rental period to to 30,50,60:\n";
+	cout<<"\n\nChanging the maximum rental period to 30,50,60:\n";
 
 	Coen244CarCompany->changePrivilege(30,*Coen244CarCompany->findCustomer("Valentin"));  	//customer Valentin is of type regular
 	Coen244CarCompany->changePrivilege(50,*Coen244CarCompany->findCustomer("Arseniy"));		//customer Arseniy is of type corporate

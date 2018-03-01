@@ -12,8 +12,9 @@ using namespace std;
 
 int Customer::maxRentalPeriod = 20;
 
-ostream& operator<<(ostream& out, const Customer& c){
-	c.print(out);
+ostream& operator<<(ostream& out, const Customer& c)
+{														//only one overload thanks to the use of a print function
+	c.print(out);										//allows in derived classes to call Base::print() and then add out<< what you need to add
 	return out;
 }
 Customer::Customer(int id,string name,string address,string tel) {
