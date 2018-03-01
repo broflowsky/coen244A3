@@ -22,11 +22,11 @@ Regular::Regular(const Regular &c):Customer(c){
 
 }
 Regular::~Regular() {
-	//~Customer();
+	delete carRented;
 }
 void Regular::print(ostream& out)const{
 
-	out <<"\nRegular Info"
+	out <<"\nCustomer Info"
 		<<"\n\tname: "<<name
 		<<"\n\taddress: "<<address
 		<<"\n\ttel: "<<tel

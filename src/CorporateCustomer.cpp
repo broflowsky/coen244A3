@@ -23,7 +23,7 @@ CorporateCustomer::CorporateCustomer(const CorporateCustomer& c):Customer(c){
 	companyAddress = c.companyAddress;
 }
 CorporateCustomer::~CorporateCustomer() {
-
+	delete carRented;
 }
 void CorporateCustomer::print(ostream& out)const{
 	Customer::print(out);

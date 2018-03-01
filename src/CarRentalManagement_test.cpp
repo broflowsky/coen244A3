@@ -85,7 +85,7 @@ int main(){
 
 	//testing if cars are rented
 	cout<<"\nChecking if cars are rented"
-		<<"\nIs Car ID" <<*Coen244CarCompany->getCar(10)<< " rented ? "
+		<<"\nIs Car ID" <<Coen244CarCompany->getCar(10)->getID()<< " rented ? "
 		<<(Coen244CarCompany->isRented(*Coen244CarCompany->getCar(10))?"yes.\n":"\nno.");
 
 	//Returning the car rented
