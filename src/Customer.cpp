@@ -10,7 +10,6 @@
 using namespace std;
 
 
-int Customer::maxRentalPeriod = 20;
 
 ostream& operator<<(ostream& out, const Customer& c)
 {														//only one overload thanks to the use of a print function
@@ -57,9 +56,6 @@ void Customer::setAddress(string address){
 void Customer::setTel(string tel){
 	this->tel=tel;
 }
-void Customer::setMaxRental(int newMax){
-	maxRentalPeriod = newMax;
-}
 void Customer::setCar(Car*car)
 {
 	this->carRented = car;
@@ -77,9 +73,6 @@ string Customer::getAddress()const{
 }
 string Customer::getTel()const{
 	return tel;
-}
-int Customer::getMaxRental(){
-	return maxRentalPeriod;
 }
 Car& Customer::getCar() const
 {

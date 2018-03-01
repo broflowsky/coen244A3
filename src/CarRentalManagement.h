@@ -11,6 +11,8 @@
 #include "VipCustomer.h"
 #include <list>
 #include <iostream>
+
+#include "Regular.h"
 using namespace std;
 
 class CarRentalManagement {

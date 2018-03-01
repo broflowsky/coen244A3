@@ -19,30 +19,27 @@ protected:
 	string name;
 	string address;
 	string tel;
-	static int maxRentalPeriod; // children classes get different values
 	Car* carRented;
 
 public:
 	Customer(int =0,string="_name",string="_address",string="_tel"); //default and parameter constructors
 	Customer(const Customer&); 					//copy constructor
 	virtual ~Customer();						//destructor
-	virtual void print(ostream&)const;
+	virtual void print(ostream&)const = 0;		// pure virtual
 
 //////////////   SETTERS    ///////////////////////
-	void setCustomerId(int);
-	void setName(string);
-	void setAddress(string);
-	void setTel(string);
-	static void setMaxRental(int);
-	void setCar(Car*);
+	virtual void setCustomerId(int);
+	virtual void setName(string);
+	virtual void setAddress(string);
+	virtual void setTel(string);
+	virtual void setCar(Car*);
 
 //////////////   GETTERS    ///////////////////////
-	int getCustomerID()const;
-	string getName()const;
-	string getAddress()const;
-	string getTel()const;
-	static int getMaxRental();	//cannot have const qualifier
-	Car& getCar()const;			//return by reference
+	virtual int getCustomerID()const;
+	virtual string getName()const;
+	virtual string getAddress()const;
+	virtual string getTel()const;
+	virtual Car& getCar()const;			//return by reference
 
 };
 #endif /* CUSTOMER_H_ */

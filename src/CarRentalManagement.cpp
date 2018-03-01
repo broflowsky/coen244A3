@@ -52,7 +52,7 @@ void CarRentalManagement::removeCar(int id){
 void CarRentalManagement::rentCar(Customer * customer,Car *car)
 {
 	if(customer != nullptr && car != nullptr)
-		if(dynamic_cast<Customer*>(customer))
+		if(dynamic_cast<Regular*>(customer))
 		{
 			if(car->getType()=="Luxury")
 				cout<<"\nCustomer cannot rent this car.\n";//IMPROVE throw exception
@@ -80,7 +80,7 @@ void CarRentalManagement::rentCar(int customerId, int carId)
 			if(car->getAvailability() == true)
 			{
 				//checking if car is luxury and customer is regular
-				if(car->getType() == "Luxury" && dynamic_cast<Customer*>(customer))
+				if(car->getType() == "Luxury" && dynamic_cast<Regular*>(customer))
 					cout<<"\nCustomer cannot rent luxury car.\n";//IMPROVE throw exception
 				else
 				{//rent is valid
@@ -134,7 +134,7 @@ void CarRentalManagement::addCustomer(int customerID,string name,string address,
 {
 	if(isVip)																						//regular OR Vip customer
 		listCustomer.push_back(new VipCustomer(customerID,name,address,tel));
-	else listCustomer.push_back(new Customer(customerID,name,address,tel));
+	else listCustomer.push_back(new Regular(customerID,name,address,tel));
 }
 void CarRentalManagement::addCustomer(int customerID,string name,string address,string tel,string companyName,string companyAddress)	//constructor #2
 {
@@ -204,7 +204,7 @@ int CarRentalManagement::getCustomerPrivilege(Customer& c)const//cant pass as co
 
 		return VipCustomer::getMaxRental();
 
-	else return Customer::getMaxRental();
+	else return Regular::getMaxRental();
 }
 
 void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)//README useful link for this : https://stackoverflow.com/questions/4589226/type-checking-in-c
@@ -217,11 +217,11 @@ void CarRentalManagement::changePrivilege(int newMaxRentalDuration, Customer& c)
 
 		VipCustomer::setMaxRental(newMaxRentalDuration);
 
-	else Customer::setMaxRental(newMaxRentalDuration);
+	else Regular::setMaxRental(newMaxRentalDuration);
 }
 void CarRentalManagement::changePrivilege(int newMaxRentalDuration, string type){
 	if(!type.compare("Regular"))
-		Customer::setMaxRental(newMaxRentalDuration);
+		Regular::setMaxRental(newMaxRentalDuration);
 	else if(!type.compare("corporate"))
 		CorporateCustomer::setMaxRental(newMaxRentalDuration);
 	else if(!type.compare("vip"))
