@@ -28,18 +28,18 @@ public:
 	virtual void print(ostream&)const = 0;		// pure virtual
 
 //////////////   SETTERS    ///////////////////////
-	virtual void setCustomerId(int);
-	virtual void setName(string);
-	virtual void setAddress(string);
-	virtual void setTel(string);
-	virtual void setCar(Car*);
+	void setCustomerId(int);
+	void setName(string);
+	void setAddress(string);
+	void setTel(string);
+	void setCar(Car*);
 
 //////////////   GETTERS    ///////////////////////
-	virtual int getCustomerID()const;
-	virtual string getName()const;
-	virtual string getAddress()const;
-	virtual string getTel()const;
-	virtual Car& getCar()const;			//return by reference
+	int getCustomerID()const;
+	string getName()const;
+	string getAddress()const;
+	string getTel()const;
+	Car& getCar()const;			//return by reference
 
 };
 #endif /* CUSTOMER_H_ */
