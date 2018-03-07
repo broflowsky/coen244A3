@@ -4,12 +4,15 @@
  *  Created on: Feb 14, 2018
  *      Author: vpuyf
  */
+#include "Car.h"
+#include <string>
 
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-class Car;	//forward declaration
-#include <string>
+//class Car;	//forward declaration
+
+
 using namespace std;
 
 class Customer {

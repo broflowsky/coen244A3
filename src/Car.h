@@ -1,9 +1,14 @@
+
+
+#include "Customer.h"
+#include<string>
+#include<iostream>
 #ifndef CAR_H_
 #define CAR_H_
 
-class Customer; //forward declaration, get errors if i use //#include "Customer.h"
-#include<string>
-#include<iostream>
+//class Customer; //forward declaration, get errors if i use //#include "Customer.h"
+
+
 
 using namespace std;
 
