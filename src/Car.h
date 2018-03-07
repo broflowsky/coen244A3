@@ -3,17 +3,16 @@
 
 #include<string>
 #include<iostream>
-class Customer;
+
 
 #ifndef CAR_H_
 #define CAR_H_
 
  //forward declaration, get errors if i use //#include "Customer.h"
-//#include "Customer.h"
-
+#include "Customer.h"
+//class Customer;
 
 using namespace std;
-
 
 class Car {
 

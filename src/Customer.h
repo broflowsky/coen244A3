@@ -10,8 +10,8 @@
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-//class Car;	//forward declaration
-#include "Car.h"
+class Car;	//forward declaration
+//#include "Car.h"
 #include <string>
 
 using namespace std;
