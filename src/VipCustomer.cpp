@@ -1,8 +1,8 @@
 /*
  * VipCustomer.cpp
  *
- *  Created on: Feb 15, 2018
- *      Author: vpuyf
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 
 #include "VipCustomer.h"

@@ -2,7 +2,8 @@
  * CarRentalManagement.cpp
  *
  *  Created on: Feb 21, 2018
- *      Author: vpuyf
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 
 #include "CarRentalManagement.h"

@@ -2,7 +2,8 @@
  * VipCustomer.h
  *
  *  Created on: Feb 15, 2018
- *      Author: vpuyf
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 
 #ifndef VIPCUSTOMER_H_

@@ -1,6 +1,9 @@
 
 
-
+/*
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
+ *      		*/
 #include<string>
 #include<iostream>
 

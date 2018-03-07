@@ -1,7 +1,8 @@
 /*
  * CarRentalManagement.h
  *
- *  Created on: Feb 21, 2018
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 #ifndef CARRENTALMANAGEMENT_H_
 #define CARRENTALMANAGEMENT_H_

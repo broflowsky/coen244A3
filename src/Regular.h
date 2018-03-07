@@ -2,7 +2,8 @@
  * regular.h
  *
  *  Created on: Mar 1, 2018
- *      Author: vpuyf
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 
 #ifndef REGULAR_H_

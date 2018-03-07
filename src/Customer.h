@@ -2,7 +2,8 @@
  * Customer.h
  *
  *  Created on: Feb 14, 2018
- *      Author: vpuyf
+ *      Author: VALENTIN PUYFOURCAT 40001780
+ *      		Arseniy Ivanov 26641512
  */
 
 
