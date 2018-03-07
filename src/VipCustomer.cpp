@@ -18,7 +18,7 @@ VipCustomer::VipCustomer(const VipCustomer &c):Customer(c){
 	//nothing to do for now
 }
 VipCustomer::~VipCustomer(){
-	delete carRented;
+
 }
 void VipCustomer::print(ostream& out)const{
 	Customer::print(out);

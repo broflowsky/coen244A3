@@ -22,7 +22,7 @@ Regular::Regular(const Regular &c):Customer(c){
 
 }
 Regular::~Regular() {
-	delete carRented;
+
 }
 void Regular::print(ostream& out)const{
 

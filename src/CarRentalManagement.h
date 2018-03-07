@@ -22,6 +22,8 @@ private:
 	list<Customer*> listCustomer;	//dynamic binding
 	list<Car> listCar;				//static binding
 public:
+
+
 	CarRentalManagement();
 	virtual ~CarRentalManagement();
 
